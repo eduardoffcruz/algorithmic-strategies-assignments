@@ -15,19 +15,22 @@ def read_board(size):
     board=[]
     for k in range(size):
         board_line= [int(n) for n in (readln()).split(' ')]
-        board.append(board_line)
+        board.append(board_line) #append has better performance than concat (+), append uses the same list while concat creates a new instance of a list
     return board
 
 #   PRINTERS ----------------------------------------------
-def outln(n: int) -> None: stdout.write(str(n)+'\n')
+def outln(n: int) -> None: 
+    stdout.write(str(n))
+    stdout.write('\n')
+
 def print_board(board: list, size: int) -> None:
     for i in range(size):
         for j in range(size): 
-            if j!=size-1: stdout.write(str(board[i][j])+' ')
-            elif j==size-1 and i!=size-1: stdout.write(str(board[i][j])+'\n')
-            else: stdout.write(str(board[i][j])) 
-
+            stdout.write(str(board[i][j])+' ')
+        stdout.write('\n')
+ 
 #   SLIDERS -----------------------------------------------
+#____________RODRIGO
 def mergeRow(row: list, direction: str, size: int, actual_pos: int) -> list:
     if direction=='left':
         if actual_pos==0 or row[actual_pos]!=row[actual_pos-1]: 
@@ -63,17 +66,65 @@ def slideRow(board: list, size: int, direction: str, slides_counter: int) -> lis
         for row in board: moveRow(row, 'right', size, 1)
     slides_counter+=1
 
+#____________EDUARDO
+#SLIDE RIGHT
+def slide_right(board,size):
+    #complexidade linear..
+    for i in range(size):
+        board[i]=slide_right_line(board[i],size)
+    return board
+    
+def slide_right_line(line,size):
+    aux=[]
+    final=[]
+    count=0 #use counter instead of len() func for optimization purposes
+    for j in range(size):
+        if(line[j]!=0):
+            aux.append(line[j])
+            count+=1
+    j=count-2
+    while(j>=0):
+        if(aux[j]==aux[j+1]):
+            #merge
+            final.append(aux[j]*2)
+            j-=2
+            count-=1
+        else:
+            final.append(aux[j+1])
+            if(j==0):
+                final.append(aux[j])
+                break
+            j-=1
+    if(j==-1):
+        #para o caso em que só temos um elemento na lista diferente de 0 OU p.exemplo: [4,4,4]
+        final.append(aux[0])
+    final.extend([0]*(size-count)) #fill with zeros
+    return final[::-1] #slicing is faster than reverse() method
+
+
+    
+
+
 def main() -> None:
     num_testcases= int(readln())
     for k in range(num_testcases):
         #for each test case:
         #read test case parameters from stdin
         board_size, max_slide= read_board_params()
-        if board_size==None: return
         #read board content from stdin
         board=read_board(board_size)
-        #   make sure we have a matrix with the defined size
-        print_board(board,board_size) #só para testar
+
+
+    print_board(board,board_size) #só para testar
+    print('-----------')
+    board=slide_right(board,board_size)
+    board=slide_right(board,board_size)
+    board=slide_right(board,board_size)
+    board=slide_right(board,board_size)
+    print_board(board,board_size)
+
+
+
 
 
 if __name__=='__main__': main()
