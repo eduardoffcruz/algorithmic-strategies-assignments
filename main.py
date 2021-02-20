@@ -70,9 +70,14 @@ def slideRow(board: list, size: int, direction: str, slides_counter: int) -> lis
 #SLIDE RIGHT
 def slide_right(board,size):
     #complexidade linear..
+    before_elem_count=0
+    after_elem_count=0
     for i in range(size):
-        board[i]=slide_right_line(board[i],size)
-    return board
+        before_count,after_count,board[i]=slide_right_line(board[i],size)
+        before_elem_count+=before_count
+        after_elem_count+=after_count
+
+    return before_elem_count,after_elem_count,board
     
 def slide_right_line(line,size):
     aux=[]
@@ -83,6 +88,7 @@ def slide_right_line(line,size):
             aux.append(line[j])
             count+=1
     j=count-2
+    aux_count=count
     while(j>=0):
         if(aux[j]==aux[j+1]):
             #merge
@@ -99,10 +105,48 @@ def slide_right_line(line,size):
         #para o caso em que só temos um elemento na lista diferente de 0 OU p.exemplo: [4,4,4]
         final.append(aux[0])
     final.extend([0]*(size-count)) #fill with zeros
-    return final[::-1] #slicing is faster than reverse() method
+    return aux_count,count,final[::-1] #slicing is faster than reverse() method
 
+#SLIDE LEFT
+def slide_left(board,size):
+    before_elem_count=0
+    after_elem_count=0
+    #complexidade linear..(?)
+    for i in range(size):
+        before_count,after_count,board[i]=slide_left_line(board[i],size)
+        before_elem_count+=before_count
+        after_elem_count+=after_count
 
+    return before_elem_count,after_elem_count,board
     
+def slide_left_line(line,size):
+    aux=[]
+    final=[]
+    count=0 #use counter instead of len() func for optimization purposes
+    for j in range(size):
+        if(line[j]!=0):
+            aux.append(line[j])
+            count+=1
+    j=1
+    aux_count=count
+    while(j<=count-1):
+        if(aux[j]==aux[j-1]):
+            #merge
+            final.append(aux[j]*2)
+            j+=2
+            count-=1
+        else:
+            final.append(aux[j-1])
+            if(j==count-1):
+                final.append(aux[j])
+                break
+            j+=1
+
+    if(j==aux_count):
+        #para o caso em que só temos um elemento na lista diferente de 0 OU p.exemplo: [4,4,4]
+        final.append(aux[aux_count-1])
+    final.extend([0]*(size-count)) #fill with zeros
+    return aux_count,count,final  
 
 
 def main() -> None:
@@ -117,10 +161,7 @@ def main() -> None:
 
     print_board(board,board_size) #só para testar
     print('-----------')
-    board=slide_right(board,board_size)
-    board=slide_right(board,board_size)
-    board=slide_right(board,board_size)
-    board=slide_right(board,board_size)
+    board=slide_left(board,board_size)
     print_board(board,board_size)
 
 
