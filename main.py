@@ -188,6 +188,8 @@ def main() -> None:
     print('-----------')
     before_count,after_count,board=slide_right(board,board_size)
     before_count,after_count,board=slide_down(board,board_size)
+    before_count,after_count,board=slide_left(board,board_size)
+    before_count,after_count,board=slide_up(board,board_size)
     print_board(board,board_size)
 
 
