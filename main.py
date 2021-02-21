@@ -69,7 +69,7 @@ def slideRow(board: list, size: int, direction: str, slides_counter: int) -> lis
 #____________EDUARDO
 #SLIDE RIGHT
 def slide_right(board,size):
-    before_elem_count=0
+    board_after=[]
     after_elem_count=0
     for i in range(size):
         #"compress" line:
@@ -80,15 +80,15 @@ def slide_right(board,size):
                 aux.append(board[i][j])
                 count+=1
         #
-        before_count,after_count,board[i]=slide(aux,size,count)
-        before_elem_count+=before_count
+        after_count,aux=slide(aux,size,count)
+        board_after.append(aux)
         after_elem_count+=after_count
 
-    return before_elem_count,after_elem_count,board
+    return after_elem_count,board_after
 
 #SLIDE LEFT
 def slide_left(board,size):
-    before_elem_count=0
+    board_after=[] #a new matrix is created so that 'board' remains imaculated
     after_elem_count=0
     for i in range(size):
         #_________"compress" line:
@@ -99,16 +99,15 @@ def slide_left(board,size):
                 aux.append(board[i][j])
                 count+=1
         #_________________________
-        before_count,after_count,board[i]=slide(aux,size,count)
-        before_elem_count+=before_count
+        after_count,aux=slide(aux,size,count)
+        board_after.append(aux)
         after_elem_count+=after_count
 
-    return before_elem_count,after_elem_count,board
+    return after_elem_count,board_after
 
 #SLIDE DOWN
 def slide_down(board,size):
     board_after=[]
-    before_elem_count=0
     after_elem_count=0
     for i in range(size):
         #"compress" line:
@@ -119,17 +118,15 @@ def slide_down(board,size):
                 aux.append(board[j][i])
                 count+=1
         #
-        before_count,after_count,aux=slide(aux,size,count)
+        after_count,aux=slide(aux,size,count)
         board_after.append(aux)
-        before_elem_count+=before_count
         after_elem_count+=after_count
 
-    return before_elem_count,after_elem_count,board_after
+    return after_elem_count,board_after
 
 #SLIDE UP
 def slide_up(board,size):
     board_after=[]
-    before_elem_count=0
     after_elem_count=0
     for i in range(size):
         #_________"compress" line:
@@ -140,12 +137,11 @@ def slide_up(board,size):
                 aux.append(board[j][i])
                 count+=1
         #_________________________
-        before_count,after_count,aux=slide(aux,size,count)
+        after_count,aux=slide(aux,size,count)
         board_after.append(aux)
-        before_elem_count+=before_count
         after_elem_count+=after_count
 
-    return before_elem_count,after_elem_count,board_after
+    return after_elem_count,board_after
     
 def slide(aux,size,count):
     #aux: ''compressed'' line e.g: [1,3] instead of [1,0,3,0] 
@@ -154,7 +150,7 @@ def slide(aux,size,count):
     final=[]
 
     j=count-2
-    aux_count=count
+
     while(j>=0):
         if(aux[j]==aux[j+1]):
             #merge
@@ -171,7 +167,37 @@ def slide(aux,size,count):
         #para o caso em que só temos um elemento na lista diferente de 0 OU p.exemplo: [4,4,4]
         final.append(aux[0])
     final.extend([0]*(size-count)) #fill with zeros
-    return aux_count,count,final 
+    return count,final 
+
+def recursive_tries(board,board_size,max_slide,slide_count):
+    if(slide_count<=max_slide):
+        elem_count_r,after_board_r=slide_right(board,board_size)
+        elem_count_l,after_board_l=slide_left(board,board_size)
+        elem_count_u,after_board_u=slide_up(board,board_size)
+        elem_count_d,after_board_d=slide_down(board,board_size)
+        if(elem_count_r==1 or elem_count_l==1 or elem_count_u==1 or elem_count_d==1):
+            return slide_count
+        else:
+            r = recursive_tries(after_board_r,board_size,max_slide,slide_count+1)
+            l = recursive_tries(after_board_l,board_size,max_slide,slide_count+1)
+            u = recursive_tries(after_board_u,board_size,max_slide,slide_count+1)
+            d = recursive_tries(after_board_d,board_size,max_slide,slide_count+1)
+            if(r>=0 or l>=0 or u>=0 or d>=0):
+                return  min(i for i in [r,l,u,d] if i>=0)
+            else:
+                return -1
+    else:
+        return -1
+
+
+def get_min_slide(board,board_size,max_slide):
+    #get value of minimum slides needed to finish the game.
+    #if number of slides needed is greater than max_slide, return 'no solution'
+    answer = recursive_tries(board,board_size,max_slide,1)
+    if(answer == -1):
+        return 'no solution'
+    else:
+        return str(answer)
 
 
 def main() -> None:
@@ -183,17 +209,18 @@ def main() -> None:
         #read board content from stdin
         board=read_board(board_size)
 
+        outln(get_min_slide(board,board_size,max_slide))
 
+    """
     print_board(board,board_size) #só para testar
+    
     print('-----------')
-    before_count,after_count,board=slide_right(board,board_size)
-    before_count,after_count,board=slide_down(board,board_size)
-    before_count,after_count,board=slide_left(board,board_size)
-    before_count,after_count,board=slide_up(board,board_size)
+    after_count,board=slide_right(board,board_size)
+    after_count,board=slide_down(board,board_size)
+    after_count,board=slide_left(board,board_size)
+    after_count,board=slide_up(board,board_size)
     print_board(board,board_size)
-
-
-
+    """
 
 
 if __name__=='__main__': main()
