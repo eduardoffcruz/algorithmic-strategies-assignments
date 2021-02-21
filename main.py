@@ -68,6 +68,7 @@ def slideRow(board: list, size: int, direction: str, slides_counter: int) -> lis
 #____________EDUARDO
 #SLIDE RIGHT
 def slide_right(board,size):
+    #done
     board_after=[]
     after_elem_count=0
     before_elem_count=0
@@ -82,13 +83,14 @@ def slide_right(board,size):
         #
         before_elem_count+=count
         after_count,aux=slide(aux,size,count)
-        board_after.append(aux)
+        board_after.append(aux[::-1])
         after_elem_count+=after_count
 
     return before_elem_count,after_elem_count,board_after
 
 #SLIDE LEFT
 def slide_left(board,size):
+    #done
     board_after=[] #a new matrix is created so that 'board' remains imaculated
     after_elem_count=0
     before_elem_count=0
@@ -110,6 +112,7 @@ def slide_left(board,size):
 
 #SLIDE DOWN
 def slide_down(board,size):
+    #
     board_after=[]
     after_elem_count=0
     before_elem_count=0
@@ -124,13 +127,17 @@ def slide_down(board,size):
         #
         before_elem_count+=count
         after_count,aux=slide(aux,size,count)
-        board_after.append(aux)
+        board_after.append(aux[::-1])
         after_elem_count+=after_count
+
+    #transpose matrix
+    board_after=[[board_after[j][i] for j in range(size)] for i in range(size)] 
 
     return before_elem_count,after_elem_count,board_after
 
 #SLIDE UP
 def slide_up(board,size):
+    #
     board_after=[]
     after_elem_count=0
     before_elem_count=0
@@ -147,6 +154,9 @@ def slide_up(board,size):
         after_count,aux=slide(aux,size,count)
         board_after.append(aux)
         after_elem_count+=after_count
+
+    #transpose matrix
+    board_after=[[board_after[j][i] for j in range(size)] for i in range(size)] 
 
     return before_elem_count,after_elem_count,board_after
     
@@ -177,30 +187,36 @@ def slide(aux,size,count):
 
 def recursive_tries(board,board_size,max_slide,slide_count):
     if(slide_count<=max_slide):
-        before_elem_count_r,after_elem_count_r,after_board_r=slide_right(board,board_size)
         before_elem_count_l,after_elem_count_l,after_board_l=slide_left(board,board_size)
+        before_elem_count_r,after_elem_count_r,after_board_r=slide_right(board,board_size)
         before_elem_count_u,after_elem_count_u,after_board_u=slide_up(board,board_size)
         before_elem_count_d,after_elem_count_d,after_board_d=slide_down(board,board_size)
         if(after_elem_count_r==1 or after_elem_count_l==1 or after_elem_count_u==1 or after_elem_count_d==1):
-            return slide_count
+            if(before_elem_count_r==1 or before_elem_count_l==1 or before_elem_count_u==1 or before_elem_count_d==1):
+            #para o caso da matrix inicial ter apenas 1 elemento no inicio
+                return slide_count-1
+            else:
+                return slide_count
         else:
-
-            if(before_elem_count_r!=after_elem_count_r):
-                r = recursive_tries(after_board_r,board_size,max_slide,slide_count+1)
-            else:
-                r=-1
-            if(before_elem_count_l!=after_elem_count_l):
-                l = recursive_tries(after_board_l,board_size,max_slide,slide_count+1)
-            else:
+            if(before_elem_count_l==after_elem_count_l and board==after_board_l):
                 l=-1
-            if(before_elem_count_u!=after_elem_count_u):
-                u = recursive_tries(after_board_u,board_size,max_slide,slide_count+1)
             else:
+                l= recursive_tries(after_board_l,board_size,max_slide,slide_count+1)
+
+            if(before_elem_count_r==after_elem_count_r and board==after_board_r):
+                r=-1
+            else:
+                r=recursive_tries(after_board_r,board_size,max_slide,slide_count+1)
+
+            if(before_elem_count_u==after_elem_count_u and board==after_board_u):
                 u=-1
-            if(before_elem_count_d!=after_elem_count_d):
-                d = recursive_tries(after_board_d,board_size,max_slide,slide_count+1)
             else:
+                u = recursive_tries(after_board_u,board_size,max_slide,slide_count+1)
+
+            if(before_elem_count_d==after_elem_count_d and board==after_board_d):
                 d=-1
+            else:
+                d = recursive_tries(after_board_d,board_size,max_slide,slide_count+1)
 
             if(r>=0 or l>=0 or u>=0 or d>=0):
                 return  min(i for i in [r,l,u,d] if i>=0)
@@ -230,6 +246,7 @@ def main() -> None:
         board=read_board(board_size)
 
         outln(get_min_slide(board,board_size,max_slide))
+
 
 
 if __name__=='__main__': main()
