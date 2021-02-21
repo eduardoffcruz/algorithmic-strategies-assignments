@@ -211,17 +211,6 @@ def main() -> None:
 
         outln(get_min_slide(board,board_size,max_slide))
 
-    """
-    print_board(board,board_size) #só para testar
-    
-    print('-----------')
-    after_count,board=slide_right(board,board_size)
-    after_count,board=slide_down(board,board_size)
-    after_count,board=slide_left(board,board_size)
-    after_count,board=slide_up(board,board_size)
-    print_board(board,board_size)
-    """
-
 
 if __name__=='__main__': main()
 
