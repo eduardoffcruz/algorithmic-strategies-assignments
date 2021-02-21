@@ -1,7 +1,6 @@
 from sys import stdin,stdout
 
 #   DEFAULT FUNCS -----------------------------------------
-def get_zeros_matrix(size: int): return [[0]*size for i in range(size)]
 
 #   READERS -----------------------------------------------
 def readln() -> str: return stdin.readline().rstrip()
