@@ -124,36 +124,50 @@ def slide(orig_row:list, size:int, non_zeros:int):
     return non_zeros,final 
 
 #   RECURSIVITY -------------------------------------------
-def recursiveTries(board,board_size,max_slide,slide_count):
+def recursiveTries(board,board_size,max_slide,slide_count,hash_table):
     if(slide_count<=max_slide):
-        before_elem_count_l,after_elem_count_l,after_board_l = slideLeft(board,board_size)
-        before_elem_count_r,after_elem_count_r,after_board_r = slideRight(board,board_size)
-        before_elem_count_u,after_elem_count_u,after_board_u = slideUp(board,board_size)
-        before_elem_count_d,after_elem_count_d,after_board_d = slideDown(board,board_size)
-        if(after_elem_count_r==1 or after_elem_count_l==1 or after_elem_count_u==1 or after_elem_count_d==1):
-            #para o caso da matrix inicial ter apenas 1 elemento no inicio
-            if before_elem_count_r==1 or before_elem_count_l==1 or before_elem_count_u==1 or before_elem_count_d==1: return slide_count-1
-            else: return slide_count
+        before_elem_count_l,after_elem_count_l,after_board_l=slideLeft(board,board_size)
+        before_elem_count_r,after_elem_count_r,after_board_r=slideRight(board,board_size)
+        before_elem_count_u,after_elem_count_u,after_board_u=slideUp(board,board_size)
+        before_elem_count_d,after_elem_count_d,after_board_d=slideDown(board,board_size)
+        if after_elem_count_r==1 or after_elem_count_l==1 or after_elem_count_u==1 or after_elem_count_d==1:
+            #para o caso da matrix inicial ter apenas 1 elemento no inicio 
+            if before_elem_count_r==1 or before_elem_count_l==1 or before_elem_count_u==1 or before_elem_count_d==1: return slide_count-1,hash_table
+            else: return slide_count,hash_table
         else:
-            if before_elem_count_l==after_elem_count_l and board==after_board_l: l=-1
-            else: l= recursiveTries(after_board_l,board_size,max_slide,slide_count+1)
+            str_board=str(after_board_l)
+            if str_board in hash_table and slide_count>=hash_table[str_board]: l=-1
+            else:
+                hash_table[str_board]=slide_count
+                l,hash_table= recursiveTries(after_board_l,board_size,max_slide,slide_count+1,hash_table)
 
-            if before_elem_count_r==after_elem_count_r and board==after_board_r: r=-1
-            else: r=recursiveTries(after_board_r,board_size,max_slide,slide_count+1)
+            str_board=str(after_board_r)
+            if str_board in hash_table and slide_count>=hash_table[str_board]: r=-1
+            else:
+                hash_table[str_board]=slide_count
+                r,hash_table=recursiveTries(after_board_r,board_size,max_slide,slide_count+1,hash_table)
+            
+            str_board=str(after_board_u)
+            if str_board in hash_table and slide_count>=hash_table[str_board]: u=-1
+            else:
+                hash_table[str_board]=slide_count
+                u,hash_table = recursiveTries(after_board_u,board_size,max_slide,slide_count+1,hash_table)
 
-            if before_elem_count_u==after_elem_count_u and board==after_board_u: u=-1
-            else: u = recursiveTries(after_board_u,board_size,max_slide,slide_count+1)
+            str_board=str(after_board_d)
+            if str_board in hash_table and slide_count>=hash_table[str_board]: d=-1
+            else:
+                hash_table[str_board]=slide_count
+                d,hash_table = recursiveTries(after_board_d,board_size,max_slide,slide_count+1,hash_table)
 
-            if before_elem_count_d==after_elem_count_d and board==after_board_d: d=-1
-            else: d = recursiveTries(after_board_d,board_size,max_slide,slide_count+1)
-
-            if r>=0 or l>=0 or u>=0 or d>=0: return  min(i for i in [r,l,u,d] if i>=0)
-            else: return -1
-    else: return -1
+            #print(" r:{}\n l:{}\n u:{}\n d:{}\n".format(r,l,u,d))
+            if(r>=0 or l>=0 or u>=0 or d>=0): return  min(i for i in [r,l,u,d] if i>=0),hash_table
+            else: return -1,hash_table
+    else: return -1,hash_table
 def getMinSlide(board,board_size,max_slide):
     #get value of minimum slides needed to finish the game.
     #if number of slides needed is greater than max_slide, return 'no solution'
-    answer = recursiveTries(board,board_size,max_slide,1)
+    hash_table=dict() #reset
+    answer,_ = recursiveTries(board,board_size,max_slide,1,hash_table)
     if answer == -1: return 'no solution'
     else: return str(answer)
 
