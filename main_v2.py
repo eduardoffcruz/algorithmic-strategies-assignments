@@ -44,7 +44,6 @@ def slideRight(board: list, size: int):
         board_after[row]= aux[::-1]
         before_elem_count+=non_zeros
         after_elem_count+=after_count
-        
     return before_elem_count,after_elem_count,board_after    
 def slideLeft(board:list, size:int):
     board_after= [None]*size 
@@ -59,7 +58,6 @@ def slideLeft(board:list, size:int):
         after_count, board_after[row] = slide(aux, size, non_zeros)
         before_elem_count+=non_zeros
         after_elem_count+=after_count
-
     return before_elem_count,after_elem_count,board_after
 def slideDown(board,size):
     board_after= [None]*size 
@@ -75,7 +73,6 @@ def slideDown(board,size):
         board_after[row]= aux[::-1]
         before_elem_count+=non_zeros
         after_elem_count+=after_count
-
     #transpose matrix
     board_after=[[board_after[column][row] for column in range(size)] for row in range(size)] 
     return before_elem_count,after_elem_count,board_after
@@ -89,8 +86,8 @@ def slideUp(board,size):
             if board[column][row]!=0:
                 aux[non_zeros]= board[column][row]
                 non_zeros+=1
-        after_count, board_after[row] = slide(aux, size, non_zeros)
         before_elem_count+=non_zeros
+        after_count, board_after[row] = slide(aux, size, non_zeros)
         after_elem_count+=after_count
 
     #transpose matrix
