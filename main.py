@@ -1,4 +1,5 @@
 from sys import stdin,stdout
+import math
 
 #   READERS -----------------------------------------------
 def readln() -> str: return stdin.readline().rstrip()
@@ -10,10 +11,17 @@ def readBoardParams():
 
 def readBoard(size):
     board=[]
+    occ=[0]*11 #(log2(2048))
     for k in range(size):
-        board_line= [int(n) for n in (readln()).split(' ')]
+        ln=readln().split(' ')
+        board_line=[]
+        for n in ln:
+            x=int(n)
+            board_line.append(x)
+            if(x!=0):
+                occ[int(math.log2(x))]+=1
         board.append(board_line) #append has better performance than concat (+), append uses the same list while concat creates a new instance of a list
-    return board
+    return board,occ
 
 #   PRINTERS ----------------------------------------------
 def outln(n: int) -> None: 
@@ -215,6 +223,16 @@ def getMinSlide(board,board_size):
     if answer == -1: return 'no solution'
     else: return str(answer)
 
+def isCandidate(occ):
+    count=0
+    for i in range(11):
+        count+=occ[i]*2**i
+    return isBase2(int(count))
+
+def isBase2(n):
+    #https://stackoverflow.com/questions/57025836/how-to-check-if-a-given-number-is-a-power-of-two
+    return (n & (n-1) == 0) and n != 0
+
 def main() -> None:
     global max_slide
     num_testcases= int(readln())
@@ -222,9 +240,13 @@ def main() -> None:
     for k in range(num_testcases):
         board_size, max_slide= readBoardParams()
         #read board content from stdin
-        board=readBoard(board_size)
-
-        outln(getMinSlide(board,board_size))
+        board,occ=readBoard(board_size)
+        #check if board isn't impossible
+        if(isCandidate(occ)):
+            #print('ola')
+            outln(getMinSlide(board,board_size))
+        else:
+            outln('no solution')
 
 
 max_slide=0 #global
