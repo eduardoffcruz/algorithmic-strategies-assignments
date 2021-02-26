@@ -172,25 +172,25 @@ def recursiveTries(board,board_size,slide_count,hash_table):
             if str_board in hash_table and slide_count>=hash_table[str_board]: 
                 l=-1
             else:
-                addBoardsToHashTable(hash_table,slide_count,after_board_l,str_board,board_size)
+                hash_table[str_board]=slide_count
                 l= recursiveTries(after_board_l,board_size,slide_count+1,hash_table)
 
             str_board=str(after_board_r)
             if str_board in hash_table and slide_count>=hash_table[str_board]: r=-1
             else:
-                addBoardsToHashTable(hash_table,slide_count,after_board_r,str_board,board_size)
+                hash_table[str_board]=slide_count
                 r=recursiveTries(after_board_r,board_size,slide_count+1,hash_table)
             
             str_board=str(after_board_u)
             if str_board in hash_table and slide_count>=hash_table[str_board]: u=-1
             else:
-                addBoardsToHashTable(hash_table,slide_count,after_board_u,str_board,board_size)
+                hash_table[str_board]=slide_count
                 u = recursiveTries(after_board_u,board_size,slide_count+1,hash_table)
 
             str_board=str(after_board_d)
             if str_board in hash_table and slide_count>=hash_table[str_board]: d=-1
             else:
-                addBoardsToHashTable(hash_table,slide_count,after_board_d,str_board,board_size)
+                hash_table[str_board]=slide_count
                 d = recursiveTries(after_board_d,board_size,slide_count+1,hash_table)
             
             #print(" r:{}\n l:{}\n u:{}\n d:{}\n".format(r,l,u,d))
@@ -225,7 +225,6 @@ def main() -> None:
         board,occ=readBoard(board_size)
         #check if board isn't impossible
         if(isCandidate(occ)):
-            #print('ola')
             outln(getMinSlide(board,board_size))
         else:
             outln('no solution')
