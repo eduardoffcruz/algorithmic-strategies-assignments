@@ -1,4 +1,5 @@
 from sys import stdin,stdout
+from datetime import datetime
 
 #   READERS -----------------------------------------------
 def readln() -> str: return stdin.readline().rstrip()
@@ -143,10 +144,6 @@ def addBoardsToHashTable(hash_table,slide_count,board,str_board,board_size):
     #print(transpose_inverse_board)
     hash_table[str(transpose_inverse_board)]=slide_count
 
-
-
-
-
 #   RECURSIVITY -------------------------------------------
 def recursiveTries(board,board_size,max_slide,slide_count,hash_table):
     if(slide_count<=max_slide):
@@ -204,7 +201,10 @@ def main() -> None:
         #read board content from stdin
         board=readBoard(board_size)
 
+        start_time = datetime.now()
         outln(getMinSlide(board,board_size,max_slide))
+        end_time=(datetime.now()-start_time).microseconds
+        print(end_time)
 
 if __name__=='__main__': main()
 
