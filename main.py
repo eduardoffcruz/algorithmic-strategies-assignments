@@ -34,17 +34,10 @@ def printBoard(board: list, size: int) -> None:
             stdout.write(str(board[i][j])+' ')
         stdout.write('\n')
 
-def addLitCount(literals,key):
-    if(key in literals):
-        literals[key]+=1
-    else:
-        literals[key]=1 
-
 #   SLIDERS -----------------------------------------------
 def slideRight(board: list, size: int):
     #a new matrix is created so that 'board' remains imaculated
     board_after= [None]*size 
-    literals=dict() #to save elems occurences
     after_elem_count, before_elem_count = 0, 0
     for row in range(size):
         aux = []
@@ -53,17 +46,15 @@ def slideRight(board: list, size: int):
             elem=board[row][column]
             if elem!=0:
                 aux.append(elem)
-                addLitCount(literals,elem)
                 non_zeros+=1
         after_count,board_after[row] = slide(aux, size, non_zeros)
         before_elem_count+=non_zeros
         after_elem_count+=after_count
         
-    return before_elem_count,after_elem_count,board_after,literals  
+    return before_elem_count,after_elem_count,board_after  
 
 def slideLeft(board:list, size:int):
     board_after= [None]*size 
-    literals=dict() #to save elems occurences
     before_elem_count, after_elem_count = 0, 0
     for row in range(size):
         aux = []
@@ -72,17 +63,15 @@ def slideLeft(board:list, size:int):
             elem=board[row][column]
             if elem!=0:
                 aux.append(elem)
-                addLitCount(literals,elem)
                 non_zeros+=1
         after_count, board_after[row] = slide(aux, size, non_zeros)
         before_elem_count+=non_zeros
         after_elem_count+=after_count
 
-    return before_elem_count,after_elem_count,board_after,literals
+    return before_elem_count,after_elem_count,board_after
 
 def slideDown(board,size):
     board_after= [None]*size 
-    literals=dict() #to save elems occurences
     before_elem_count, after_elem_count = 0, 0
     for row in range(size):
         aux = []
@@ -91,7 +80,6 @@ def slideDown(board,size):
             elem=board[column][row]
             if elem!=0:
                 aux.append(elem)
-                addLitCount(literals,elem)
                 non_zeros+=1
         after_count, board_after[row] = slide(aux, size, non_zeros)
         before_elem_count+=non_zeros
@@ -99,11 +87,10 @@ def slideDown(board,size):
 
     #transpose matrix
     #board_after=[[board_after[column][row] for column in range(size)] for row in range(size)] 
-    return before_elem_count,after_elem_count,board_after,literals
+    return before_elem_count,after_elem_count,board_after
     
 def slideUp(board,size):
     board_after= [None]*size 
-    literals=dict() #to save elems occurences
     before_elem_count, after_elem_count = 0, 0
     for row in range(size):
         aux = []
@@ -112,7 +99,6 @@ def slideUp(board,size):
             elem=board[column][row]
             if elem!=0:
                 aux.append(elem)
-                addLitCount(literals,elem)
                 non_zeros+=1
         after_count, board_after[row] = slide(aux, size, non_zeros)
         before_elem_count+=non_zeros
@@ -120,7 +106,7 @@ def slideUp(board,size):
 
     #transpose matrix
     #board_after = [[board_after[column][row] for column in range(size)] for row in range(size)] 
-    return before_elem_count,after_elem_count,board_after,literals
+    return before_elem_count,after_elem_count,board_after
  
 def slide(orig_row:list, size:int, non_zeros:int):
     # orig_row:   ''compressed'' line e.g: [1,3] instead of [1,0,3,0] 
@@ -148,7 +134,7 @@ def slide(orig_row:list, size:int, non_zeros:int):
 
     return non_zeros,final 
 
-def addBoardsToHashTable(hash_table,slide_count,board,str_board,board_size):
+def addBoardsToHashTable(hash_table,slide_count,str_board): #(hash_table,slide_count,board,str_board,board_size)
     #add board as it is
     hash_table[str_board]=slide_count
     """
@@ -173,18 +159,15 @@ def isOdd(n):
 def recursiveTries(board,board_size,slide_count,hash_table):
     global max_slide
     if(slide_count<=max_slide):
-        before_elem_count_l,after_elem_count_l,after_board_l,lit_l=slideLeft(board,board_size)
-        before_elem_count_r,after_elem_count_r,after_board_r,lit_r=slideRight(board,board_size)
-        before_elem_count_u,after_elem_count_u,after_board_u,lit_u=slideUp(board,board_size)
-        before_elem_count_d,after_elem_count_d,after_board_d,lit_d=slideDown(board,board_size)
+        before_elem_count_l,after_elem_count_l,after_board_l=slideLeft(board,board_size)
+        before_elem_count_r,after_elem_count_r,after_board_r=slideRight(board,board_size)
+        before_elem_count_u,after_elem_count_u,after_board_u=slideUp(board,board_size)
+        before_elem_count_d,after_elem_count_d,after_board_d=slideDown(board,board_size)
         if after_elem_count_r==1 or after_elem_count_l==1 or after_elem_count_u==1 or after_elem_count_d==1:
             #para o caso da matrix inicial ter apenas 1 elemento no inicio 
             if before_elem_count_r==1 or before_elem_count_l==1 or before_elem_count_u==1 or before_elem_count_d==1: return slide_count-1
             else: return slide_count
         else:
-            if(isOdd(lit_u[min(lit_u)]) or isOdd(lit_d[min(lit_d)]) or isOdd(lit_r[min(lit_r)]) or isOdd(lit_l[min(lit_l)])):
-                max_slide=0 #force end of all recursion (no solution)
-                return -1
             str_board=str(after_board_l)
             if str_board in hash_table and slide_count>=hash_table[str_board]: 
                 l=-1
@@ -230,7 +213,6 @@ def isCandidate(occ):
     return isBase2(int(count))
 
 def isBase2(n):
-    #https://stackoverflow.com/questions/57025836/how-to-check-if-a-given-number-is-a-power-of-two
     return (n & (n-1) == 0) and n != 0
 
 def main() -> None:
