@@ -42,9 +42,25 @@ int *initArray(int size){
     return arr;
 }
 
-void getMinSlide(int *board,int board_size){
+int recursiveTries(int* board, int board_size, int max_slide, int slide_count){
+    //return slide_count
+    if(slide_count<=max_slide){
+        after_elem_count_l=slideLeft(board,board_size);
+        after_elem_count_r=slideRight(board,board_size);
+        after_elem_count_u=slideUp(board,board_size);
+        after_elem_count_d=slideDown(board,board_size);
+        if(after_elem_count_l==1 || after_elem_count_r==1 || after_elem_count_u==1 || after_elem_count_d==1){
+            return slide_count;
+        }
+    }
+    else
+        return -1;
+
+}
+
+void getMinSlide(int *board,int board_size,int max_slide){
     int answer;
-    answer= recursiveTries();
+    answer= recursiveTries(board,board_size,max_slide,1);
     if(answer==-1)
         printf("no solution\n");
     else
@@ -53,7 +69,7 @@ void getMinSlide(int *board,int board_size){
 
 void main(void){
     //read input
-    int row,i,num_testcases,board_size,max_slide;
+    int j,i,num_testcases,board_size,max_slide;
     int *board,*occ;
     int x;
 
@@ -62,10 +78,10 @@ void main(void){
         scanf("%d %d",&board_size,&max_slide);
         board=initArray(board_size*board_size);
         occ=initArray(11); //occurrence array
-        for(row=0;row<board_size*board_size;row++){
+        for(j=0;j<board_size*board_size;j++){
             scanf("%d",&x);
-            (board+row*sizeof(int))=x;
-            //printf("-> %d\n",*(board+row*sizeof(int)));
+            (board+j*sizeof(int))=x;
+            //printf("-> %d\n",*(board+j*sizeof(int)));
             if(x!=0){
                 occ[log2(x)]++;
             }
@@ -73,7 +89,7 @@ void main(void){
         //neste momento temos board
         //check if board isn't impossible 
         if(isCandidate(occ)){
-            getMinSlide(board,board_size);
+            getMinSlide(board,board_size,max_slide);
         }
         else{
             printf("no solution\n");
