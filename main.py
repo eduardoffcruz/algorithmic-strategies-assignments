@@ -11,6 +11,8 @@ def readBoardParams():
 
 def readBoard(size):
     board=[]
+    flatten_board=[]
+    count=0
     occ=[0]*11 #(log2(2048))
     for k in range(size):
         ln=readln().split(' ')
@@ -19,9 +21,11 @@ def readBoard(size):
             x=int(n)
             board_line.append(x)
             if(x!=0):
+                flatten_board.append(x)
+                count+=1
                 occ[int(math.log2(x))]+=1
         board.append(board_line) #append has better performance than concat (+), append uses the same list while concat creates a new instance of a list
-    return board,occ
+    return board,flatten_board,count,occ
 
 #   PRINTERS ----------------------------------------------
 def outln(n: int) -> None: 
@@ -156,7 +160,7 @@ def isOdd(n):
     return n%2==1
 
 #   RECURSIVITY -------------------------------------------
-def recursiveTries(board,board_size,slide_count,hash_table):
+def recursiveTries(board,board_size,slide_count,hash_table,min_estimate):
     global max_slide
     if(slide_count<=max_slide):
         before_elem_count_l,after_elem_count_l,after_board_l=slideLeft(board,board_size)
@@ -166,43 +170,46 @@ def recursiveTries(board,board_size,slide_count,hash_table):
         if after_elem_count_r==1 or after_elem_count_l==1 or after_elem_count_u==1 or after_elem_count_d==1:
             #para o caso da matrix inicial ter apenas 1 elemento no inicio 
             if before_elem_count_r==1 or before_elem_count_l==1 or before_elem_count_u==1 or before_elem_count_d==1: return slide_count-1
-            else: return slide_count
+            else: 
+                if(slide_count==min_estimate):
+                    max_slide=0 #force end of all recursion if min_estimate possible has been reached
+                return slide_count
         else:
             str_board=str(after_board_l)
             if str_board in hash_table and slide_count>=hash_table[str_board]: 
                 l=-1
             else:
                 hash_table[str_board]=slide_count
-                l= recursiveTries(after_board_l,board_size,slide_count+1,hash_table)
+                l= recursiveTries(after_board_l,board_size,slide_count+1,hash_table,min_estimate)
 
             str_board=str(after_board_r)
             if str_board in hash_table and slide_count>=hash_table[str_board]: r=-1
             else:
                 hash_table[str_board]=slide_count
-                r=recursiveTries(after_board_r,board_size,slide_count+1,hash_table)
+                r=recursiveTries(after_board_r,board_size,slide_count+1,hash_table,min_estimate)
             
             str_board=str(after_board_u)
             if str_board in hash_table and slide_count>=hash_table[str_board]: u=-1
             else:
                 hash_table[str_board]=slide_count
-                u = recursiveTries(after_board_u,board_size,slide_count+1,hash_table)
+                u = recursiveTries(after_board_u,board_size,slide_count+1,hash_table,min_estimate)
 
             str_board=str(after_board_d)
             if str_board in hash_table and slide_count>=hash_table[str_board]: d=-1
             else:
                 hash_table[str_board]=slide_count
-                d = recursiveTries(after_board_d,board_size,slide_count+1,hash_table)
+                d = recursiveTries(after_board_d,board_size,slide_count+1,hash_table,min_estimate)
             
             #print(" r:{}\n l:{}\n u:{}\n d:{}\n".format(r,l,u,d))
             if(r>=0 or l>=0 or u>=0 or d>=0): return  min(i for i in [r,l,u,d] if i>=0)
             else: return -1
     else: return -1
 
-def getMinSlide(board,board_size):
+def getMinSlide(board,board_size,min_estimate):
     #get value of minimum slides needed to finish the game.
     #if number of slides needed is greater than max_slide, return 'no solution'
     hash_table=dict() #reset
-    answer = recursiveTries(board,board_size,1,hash_table)
+    answer = recursiveTries(board,board_size,1,hash_table,min_estimate)
     if answer == -1: return 'no solution'
     else: return str(answer)
 
@@ -215,6 +222,33 @@ def isCandidate(occ):
 def isBase2(n):
     return (n & (n-1) == 0) and n != 0
 
+def func(flatten_board,elem_count):
+    slide_count=0
+    while(slide_count<=max_slide):
+        if(elem_count<=1):
+            return slide_count
+        flatten_board.sort()
+        i=0
+        aux=[]
+        limite=elem_count-2
+        while(i<=limite):
+            x=flatten_board[i]
+            if(x==flatten_board[i+1]):
+                aux.append(x*2)
+                i+=2
+                elem_count-=1
+            else:
+                aux.append(x)
+                if i==limite:
+                    aux.append(flatten_board[i+1])
+                    break
+                i+=1
+        if(i==limite+1):
+            aux.append(flatten_board[i])
+        flatten_board=aux
+        slide_count+=1
+    return -1
+
 def main() -> None:
     global max_slide
     num_testcases= int(readln())
@@ -222,10 +256,19 @@ def main() -> None:
     for k in range(num_testcases):
         board_size, max_slide= readBoardParams()
         #read board content from stdin
-        board,occ=readBoard(board_size)
+        board,flatten_board,elem_count,occ=readBoard(board_size)
+
+        """
         #check if board isn't impossible
         if(isCandidate(occ)):
             outln(getMinSlide(board,board_size))
+        else:
+            outln('no solution')
+        """
+        min_slide_estimate=func(flatten_board,elem_count)
+        if(min_slide_estimate!=-1):
+            #print('ok {}'.format(min_slide_estimate))
+            outln(getMinSlide(board,board_size,min_slide_estimate))
         else:
             outln('no solution')
 
