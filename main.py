@@ -176,11 +176,11 @@ def slide(orig_row:list, size:int, non_zeros:int):
     if orig_col==-1: final[final_col]= orig_row[0]
 
     return non_zeros,final 
-
-def addBoardsToHashTable(hash_table,slide_count,str_board): #(hash_table,slide_count,board,str_board,board_size)
+"""
+def addBoardsToHashTable(hash_table,slide_count,board,str_board,board_size):
     #add board as it is
     hash_table[str_board]=slide_count
-    """
+  
     #add equivelent boards:
     #transpose matrix
     transpose_board=[[board[column][row] for column in range(board_size)] for row in range(board_size)] 
@@ -194,9 +194,9 @@ def addBoardsToHashTable(hash_table,slide_count,str_board): #(hash_table,slide_c
     transpose_inverse_board=[transpose_board[row][::-1] for row in range(board_size)] 
     #print(transpose_inverse_board)
     hash_table[str(transpose_inverse_board)]=slide_count
-     """
+    
 
-"""
+
 def isOdd(n):
     return n%2==1
 """
@@ -207,8 +207,7 @@ def recursiveTries(board,board_size,slide_count,before_elem,after_elem,hash_tabl
 
         if after_elem==1:
             #para o caso da matrix inicial ter apenas 1 elemento no inicio 
-            if before_elem==1: return slide_count-1
-            else: return slide_count
+            return slide_count
 
         str_board=str(board)
         if(str_board in hash_table and slide_count>=hash_table[str_board]):
@@ -222,8 +221,8 @@ def recursiveTries(board,board_size,slide_count,before_elem,after_elem,hash_tabl
         
              
 
-        l= recursiveTries(after_board_l,s_l,slide_count+1,before_elem_count_l,after_elem_count_l,hash_table,max_slide)
-        r=recursiveTries(after_board_r,s_r,slide_count+1,before_elem_count_r,after_elem_count_r,hash_table,max_slide)    
+        l = recursiveTries(after_board_l,s_l,slide_count+1,before_elem_count_l,after_elem_count_l,hash_table,max_slide)
+        r = recursiveTries(after_board_r,s_r,slide_count+1,before_elem_count_r,after_elem_count_r,hash_table,max_slide)    
         u = recursiveTries(after_board_u,s_u,slide_count+1,before_elem_count_u,after_elem_count_u,hash_table,max_slide)
         d = recursiveTries(after_board_d,s_d,slide_count+1,before_elem_count_d,after_elem_count_d,hash_table,max_slide)
    
@@ -259,6 +258,7 @@ def getMinSlide(board,board_size,max_slide):
 
 
 def isCandidate(occ):
+    #reduce everything to 2's
     count=0
     for i in range(11):
         count+=occ[i]*2**i

@@ -2,14 +2,15 @@
 #include <stdlib.h>
 #include <math.h>
 
-int *slideRight(int board[],int size, int*);
+void print_board(int* board[],int size);
+int **slideRight(int *board[],int size, int*);
 int *slide(int line[],int *non_zeros, int board_size);
 int isCandidate(int occ[]);
 int isBase2(int);
 int *initZeroArray(int size);
-int recursiveTries(int* board, int board_size, int max_slide, int slide_count);
+int recursiveTries(int* board[], int board_size, int max_slide, int slide_count,int);
 int min_slide(int,int,int,int);
-void getMinSlide(int *board,int board_size,int max_slide);
+void getMinSlide(int *board[],int board_size,int max_slide);
 int main(void);
 /*
 int* slideRight(int** board, int size):
@@ -30,48 +31,61 @@ int* slideRight(int** board, int size):
         
     return before_elem_count,after_elem_count,board_after  ;
 */
+void print_board(int* board[],int size){
+    int i,j;
+    for(i=0;i<size;i++){
+        for(j=0;j<size;j++){
+            printf("%d ",board[i][j]);
+        }
+        printf("\n");
+    }
+}
 
-/**
- * right -> direction=0
- * up    -> direction=1
- * left  -> direction=2
- * down  -> direction=3
-*/
-int *slideTo(int direction, int* board, int size, int* after_elem_count){
+int **slideRight(int *board[],int size,int *after_elem_count){
+    int i,j,elem,non_zeros;
+    int *aux,**after_board;
+    after_board=(int **)malloc(size * sizeof(int*));
+    for(int i = 0; i <size; i++) after_board[i] = (int *)malloc(size * sizeof(int));
+    after_elem_count=0;
+    for(i=0;i<size;i++){
+        aux=initZeroArray(size);
+        non_zeros=0;
+        for(j=0;j<=size;j++){
+            //elem=board[i*size+j];
+            elem=board[i][j]; 
+            if(elem!=0){
+                aux[non_zeros]=elem;
+                non_zeros++;
+            }
+        }
+        after_board[i]=slide(aux,&non_zeros,size);
+        //after_board[i*size]=slide(aux,&non_zeros,size);
+        after_elem_count=after_elem_count+non_zeros;
+    }
+
+    return after_board;
+}
+/*
+int *slideLeft(int board[],int size,int *after_elem_count){
     int elem,non_zeros;
     int *aux,*after_board=(int*)malloc(size*size*sizeof(int));
     after_elem_count=0;
     for(int i=0;i<size;i++){
         aux=initZeroArray(size);
         non_zeros=0;
-        if (direction==0) {
-            for(int j=0;j<=size;j++){
-                elem=board[i*size+j];
-                if(elem!=0){
-                    aux[non_zeros]=elem;
-                    non_zeros++;
-                }
+        for(int j=size-1;j>-1;j+){
+            elem=board[i*size+j];
+            if(elem!=0){
+                aux[non_zeros]=elem;
+                non_zeros++;
             }
-        } else if (direction==2) {
-            for(int j=size-1; j>-1; j--){
-                elem=board[i*size+j];
-                if(elem!=0){
-                    aux[non_zeros]=elem;
-                    non_zeros++;
-                }
-            }
-        } else if (direction==1) {
-
-        } else if (direction==3) {
-            
         }
         memcpy(&after_board[i*size],slide(aux,&non_zeros,size),size);
         //after_board[i*size]=slide(aux,&non_zeros,size);
         after_elem_count=after_elem_count+non_zeros;
     }
     return after_board;
-}
-
+}*/
 int *slide(int line[],int *non_zeros, int board_size){
     //returns after_elem_count
     int *final=initZeroArray(board_size);
@@ -94,14 +108,12 @@ int *slide(int line[],int *non_zeros, int board_size){
         }
         i_final++;
     }
-
     //para o caso em que só temos um elemento na lista diferente de 0 OU p.exemplo: [4,4,4]
     if(i==-1) 
         final[i_final]=line[0];
 
     return final;
 }
-
 
 int isCandidate(int occ[]){
     int count=0,len=11; //2^11=2048
@@ -122,30 +134,41 @@ int *initZeroArray(int size){
     return arr;
 }
 
-int recursiveTries(int* board, int board_size, int max_slide, int slide_count){
+int recursiveTries(int *board[], int board_size, int max_slide, int slide_count,int elem_count){
     //return slide_count
     int elem_count_l,elem_count_r,elem_count_u,elem_count_d;
-    int *after_board_l,*after_board_r,*after_board_d,*after_board_u;
+    int **after_board_l,**after_board_r,**after_board_d,**after_board_u;
     int l,r,d,u;
 
     if(slide_count<=max_slide){
+        if(elem_count==1):
+            
+    }
+
+    printf("-----\n");
+    print_board(board,board_size);
+ 
+    if(slide_count<=max_slide){
         //after_board_l=slideLeft(board,board_size,&elem_count_l);
         after_board_r=slideRight(board,board_size,&elem_count_r);
+        printf("+++++\n");
+        print_board(after_board_r,board_size);
         //after_board_d=slideUp(board,board_size,&elem_count_u);
         //after_board_u=slideDown(board,board_size,&elem_count_d);
-        if(elem_count_l==1 || elem_count_r==1 || elem_count_u==1 || elem_count_d==1){
+        if(elem_count_r==1){
             //free all 4 boards!!! TODO:
             return slide_count;
         }
         else{
-            l=recursiveTries(after_board_l,board_size,max_slide,slide_count+1);
+            //l=recursiveTries(after_board_l,board_size,max_slide,slide_count+1);
             r=recursiveTries(after_board_r,board_size,max_slide,slide_count+1);
-            d=recursiveTries(after_board_d,board_size,max_slide,slide_count+1);
-            u=recursiveTries(after_board_u,board_size,max_slide,slide_count+1);
+            //d=recursiveTries(after_board_d,board_size,max_slide,slide_count+1);
+            //u=recursiveTries(after_board_u,board_size,max_slide,slide_count+1);
 
-            if(r>=0 || l>=0 || d>=0 || u>=0){
+            //if(r>=0 || l>=0 || d>=0 || u>=0){
+            if(r>=0){
                 //free all 4 boards!!! TODO:
-                return min_slide(l,r,d,u);
+                return r;//min_slide(l,r,d,u);
             }
             else{
                 //free all 4 boards!!! TODO:
@@ -195,9 +218,9 @@ int min_slide(int l, int r, int d,int u){
     return min;
 }
 
-void getMinSlide(int *board,int board_size,int max_slide){
+void getMinSlide(int *board[],int board_size,int max_slide){
     int answer;
-    answer= recursiveTries(board,board_size,max_slide,1);
+    answer= recursiveTries(board,board_size,max_slide,0);
     if(answer==-1)
         printf("no solution\n");
     else
@@ -206,21 +229,24 @@ void getMinSlide(int *board,int board_size,int max_slide){
 
 int main(void){
     //read input
-    int j,i,num_testcases,board_size,max_slide;
-    int *board,*occ;
+    int j,i,k,num_testcases,board_size,max_slide;
+    int **board,*occ;
     int x;
 
     scanf("%d",&num_testcases);
     for(i=0; i<num_testcases;i++){
         scanf("%d %d",&board_size,&max_slide);
-        board=initZeroArray(board_size*board_size);
+        board= (int **)malloc(board_size * sizeof(int*));
+        for(int i = 0; i <board_size; i++) board[i] = (int *)malloc(board_size * sizeof(int));
         occ=initZeroArray(11); //occurrence array
-        for(j=0;j<board_size*board_size;j++){
-            scanf("%d",&x);
-            board[j*sizeof(int)]=x;
-            //printf("-> %d\n",*(board+j*sizeof(int)));
-            if(x!=0){
-                occ[(int)log2(x)]++;
+        for(j=0;j<board_size;j++){
+            for(k=0;k<board_size;k++){
+                scanf("%d",&x);
+                board[j][k]=x;
+                //printf("-> %d\n",*(board+j*sizeof(int)));
+                if(x!=0){
+                    occ[(int)log2(x)]++;
+                }
             }
         }
         //neste momento temos board
@@ -231,7 +257,7 @@ int main(void){
         else{
             printf("no solution\n");
         }
-        free(board); free(occ);
+        //free(board); free(occ);
     }
 
     return 0; //end
