@@ -13,7 +13,7 @@ def readBoard(size):
     board=[]
     flatten_board=[]
     count=0
-    occ=[0]*11 #(log2(2048))
+    #occ=[0]*11 #(log2(2048))
     for k in range(size):
         ln=readln().split(' ')
         board_line=[]
@@ -23,9 +23,9 @@ def readBoard(size):
             if(x!=0):
                 flatten_board.append(x)
                 count+=1
-                occ[int(math.log2(x))]+=1
+                #occ[int(math.log2(x))]+=1
         board.append(board_line) #append has better performance than concat (+), append uses the same list while concat creates a new instance of a list
-    return board,flatten_board,count,occ
+    return board,flatten_board,count #,occ
 
 #   PRINTERS ----------------------------------------------
 def outln(n: int) -> None: 
@@ -155,9 +155,12 @@ def addBoardsToHashTable(hash_table,slide_count,str_board): #(hash_table,slide_c
     transpose_inverse_board=[transpose_board[row][::-1] for row in range(board_size)] 
     #print(transpose_inverse_board)
     hash_table[str(transpose_inverse_board)]=slide_count
-    """
+     """
+
+"""
 def isOdd(n):
     return n%2==1
+"""
 
 #   RECURSIVITY -------------------------------------------
 def recursiveTries(board,board_size,slide_count,hash_table,min_estimate):
@@ -213,6 +216,7 @@ def getMinSlide(board,board_size,min_estimate):
     if answer == -1: return 'no solution'
     else: return str(answer)
 
+"""
 def isCandidate(occ):
     count=0
     for i in range(11):
@@ -221,6 +225,7 @@ def isCandidate(occ):
 
 def isBase2(n):
     return (n & (n-1) == 0) and n != 0
+"""
 
 def func(flatten_board,elem_count):
     slide_count=0
@@ -256,7 +261,7 @@ def main() -> None:
     for k in range(num_testcases):
         board_size, max_slide= readBoardParams()
         #read board content from stdin
-        board,flatten_board,elem_count,occ=readBoard(board_size)
+        board,flatten_board,elem_count=readBoard(board_size)
 
         """
         #check if board isn't impossible
