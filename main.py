@@ -11,9 +11,9 @@ def readBoardParams():
 
 def readBoard(size):
     board=[]
-    flatten_board=[]
-    count=0
-    #occ=[0]*11 #(log2(2048))
+    #flatten_board=[]
+    #count=0
+    occ=[0]*11 #(log2(2048))
     for k in range(size):
         ln=readln().split(' ')
         board_line=[]
@@ -21,11 +21,11 @@ def readBoard(size):
             x=int(n)
             board_line.append(x)
             if(x!=0):
-                flatten_board.append(x)
-                count+=1
-                #occ[int(math.log2(x))]+=1
+                #flatten_board.append(x)
+                #count+=1
+                occ[int(math.log2(x))]+=1
         board.append(board_line) #append has better performance than concat (+), append uses the same list while concat creates a new instance of a list
-    return board,flatten_board,count #,occ
+    return board,occ #,flatten_board,count #,occ
 
 #   PRINTERS ----------------------------------------------
 def outln(n: int) -> None: 
@@ -40,6 +40,7 @@ def printBoard(board: list, size: int) -> None:
 
 #   SLIDERS -----------------------------------------------
 def slideRight(board: list, size: int):
+    l,c=0,size
     #a new matrix is created so that 'board' remains imaculated
     board_after= [None]*size 
     after_elem_count, before_elem_count = 0, 0
@@ -50,14 +51,24 @@ def slideRight(board: list, size: int):
             elem=board[row][column]
             if elem!=0:
                 aux.append(elem)
-                non_zeros+=1
+                non_zeros+=1  
         after_count,board_after[row] = slide(aux, size, non_zeros)
         before_elem_count+=non_zeros
         after_elem_count+=after_count
+
+        if(board_after[row][0]==0):
+            l+=1
+        else:
+            l=0
+        if(size-after_count<c):
+            c=size-after_count
+            #zeros
+    x=min(l,c)
         
-    return before_elem_count,after_elem_count,board_after  
+    return before_elem_count,after_elem_count,board_after,size-x  
 
 def slideLeft(board:list, size:int):
+    l,c=0,size
     board_after= [None]*size 
     before_elem_count, after_elem_count = 0, 0
     for row in range(size):
@@ -71,10 +82,20 @@ def slideLeft(board:list, size:int):
         after_count, board_after[row] = slide(aux, size, non_zeros)
         before_elem_count+=non_zeros
         after_elem_count+=after_count
+        
+        if(board_after[row][0]==0):
+            l+=1
+        else:
+            l=0
+        if(size-after_count<c):
+            c=size-after_count
+            #zeros
+    x=min(l,c)
 
-    return before_elem_count,after_elem_count,board_after
+    return before_elem_count,after_elem_count,board_after,size-x
 
 def slideDown(board,size):
+    l,c=0,size
     board_after= [None]*size 
     before_elem_count, after_elem_count = 0, 0
     for row in range(size):
@@ -89,11 +110,21 @@ def slideDown(board,size):
         before_elem_count+=non_zeros
         after_elem_count+=after_count
 
+        if(board_after[row][0]==0):
+            l+=1
+        else:
+            l=0
+        if(size-after_count<c):
+            c=size-after_count
+            #zeros
+    x=min(l,c)
+
     #transpose matrix
     #board_after=[[board_after[column][row] for column in range(size)] for row in range(size)] 
-    return before_elem_count,after_elem_count,board_after
+    return before_elem_count,after_elem_count,board_after,size-x
     
 def slideUp(board,size):
+    l,c=0,size
     board_after= [None]*size 
     before_elem_count, after_elem_count = 0, 0
     for row in range(size):
@@ -108,9 +139,17 @@ def slideUp(board,size):
         before_elem_count+=non_zeros
         after_elem_count+=after_count
 
+        if(board_after[row][0]==0):
+            l+=1
+        else:
+            l=0
+        if(size-after_count<c):
+            c=size-after_count
+            #zeros
+    x=min(l,c)
     #transpose matrix
     #board_after = [[board_after[column][row] for column in range(size)] for row in range(size)] 
-    return before_elem_count,after_elem_count,board_after
+    return before_elem_count,after_elem_count,board_after,size-x
  
 def slide(orig_row:list, size:int, non_zeros:int):
     # orig_row:   ''compressed'' line e.g: [1,3] instead of [1,0,3,0] 
@@ -163,60 +202,77 @@ def isOdd(n):
 """
 
 #   RECURSIVITY -------------------------------------------
-def recursiveTries(board,board_size,slide_count,hash_table,min_estimate):
-    global max_slide
+def recursiveTries(board,board_size,slide_count,hash_table,max_slide):
     if(slide_count<=max_slide):
-        before_elem_count_l,after_elem_count_l,after_board_l=slideLeft(board,board_size)
-        before_elem_count_r,after_elem_count_r,after_board_r=slideRight(board,board_size)
-        before_elem_count_u,after_elem_count_u,after_board_u=slideUp(board,board_size)
-        before_elem_count_d,after_elem_count_d,after_board_d=slideDown(board,board_size)
+        before_elem_count_l,after_elem_count_l,after_board_l,s_l=slideLeft(board,board_size)
+        before_elem_count_r,after_elem_count_r,after_board_r,s_r=slideRight(board,board_size)
+        before_elem_count_u,after_elem_count_u,after_board_u,s_u=slideUp(board,board_size)
+        before_elem_count_d,after_elem_count_d,after_board_d,s_d=slideDown(board,board_size)
         if after_elem_count_r==1 or after_elem_count_l==1 or after_elem_count_u==1 or after_elem_count_d==1:
             #para o caso da matrix inicial ter apenas 1 elemento no inicio 
             if before_elem_count_r==1 or before_elem_count_l==1 or before_elem_count_u==1 or before_elem_count_d==1: return slide_count-1
-            else: 
-                if(slide_count==min_estimate):
-                    max_slide=0 #force end of all recursion if min_estimate possible has been reached
-                return slide_count
+            else: return slide_count
+             
         else:
+
             str_board=str(after_board_l)
             if str_board in hash_table and slide_count>=hash_table[str_board]: 
                 l=-1
             else:
                 hash_table[str_board]=slide_count
-                l= recursiveTries(after_board_l,board_size,slide_count+1,hash_table,min_estimate)
+                l= recursiveTries(after_board_l,s_l,slide_count+1,hash_table,max_slide)
+
 
             str_board=str(after_board_r)
             if str_board in hash_table and slide_count>=hash_table[str_board]: r=-1
             else:
                 hash_table[str_board]=slide_count
-                r=recursiveTries(after_board_r,board_size,slide_count+1,hash_table,min_estimate)
+                r=recursiveTries(after_board_r,s_r,slide_count+1,hash_table,max_slide)
             
             str_board=str(after_board_u)
             if str_board in hash_table and slide_count>=hash_table[str_board]: u=-1
             else:
                 hash_table[str_board]=slide_count
-                u = recursiveTries(after_board_u,board_size,slide_count+1,hash_table,min_estimate)
+                u = recursiveTries(after_board_u,s_u,slide_count+1,hash_table,max_slide)
 
             str_board=str(after_board_d)
             if str_board in hash_table and slide_count>=hash_table[str_board]: d=-1
             else:
                 hash_table[str_board]=slide_count
-                d = recursiveTries(after_board_d,board_size,slide_count+1,hash_table,min_estimate)
+                d = recursiveTries(after_board_d,s_d,slide_count+1,hash_table,max_slide)
+            """
+            if(after_elem_count_r<=4):
+                print('R')
+                print(r)
+                printBoard(after_board_r,board_size)
+            if(after_elem_count_l<=4):
+                print('L')
+                print(l)
+                printBoard(after_board_l,board_size)
+            if(after_elem_count_u<=4):
+                print('U')
+                print(u)
+                printBoard(after_board_u,board_size)
+            if(after_elem_count_d<=4):
+                print('D')
+                print(d)
+                printBoard(after_board_d,board_size)
+            """
             
             #print(" r:{}\n l:{}\n u:{}\n d:{}\n".format(r,l,u,d))
-            if(r>=0 or l>=0 or u>=0 or d>=0): return  min(i for i in [r,l,u,d] if i>=0)
+            if(r>=0 or l>=0 or u>=0 or d>=0): 
+                return min(i for i in [r,l,u,d] if i>=0)
             else: return -1
     else: return -1
 
-def getMinSlide(board,board_size,min_estimate):
+def getMinSlide(board,board_size,max_slide):
     #get value of minimum slides needed to finish the game.
     #if number of slides needed is greater than max_slide, return 'no solution'
-    hash_table=dict() #reset
-    answer = recursiveTries(board,board_size,1,hash_table,min_estimate)
-    if answer == -1: return 'no solution'
-    else: return str(answer)
+    answer=recursiveTries(board,board_size,1,dict(),max_slide)
+    if answer == -1: outln('no solution')
+    else: outln(answer)
 
-"""
+
 def isCandidate(occ):
     count=0
     for i in range(11):
@@ -225,8 +281,8 @@ def isCandidate(occ):
 
 def isBase2(n):
     return (n & (n-1) == 0) and n != 0
-"""
 
+"""
 def func(flatten_board,elem_count):
     #flatten_board has no zeros
     slide_count=0
@@ -254,22 +310,21 @@ def func(flatten_board,elem_count):
         flatten_board=aux
         slide_count+=1
     return -1
-
+"""
 def main() -> None:
-    global max_slide
     num_testcases= int(readln())
     #read test case parameters from stdin
     for k in range(num_testcases):
         board_size, max_slide= readBoardParams()
         #read board content from stdin
-        board,flatten_board,elem_count=readBoard(board_size)
+        board,occ=readBoard(board_size)
 
-        """
         #check if board isn't impossible
         if(isCandidate(occ)):
-            outln(getMinSlide(board,board_size))
+            getMinSlide(board,board_size,max_slide)
         else:
             outln('no solution')
+
         """
         min_slide_estimate=func(flatten_board,elem_count)
         if(min_slide_estimate!=-1):
@@ -277,9 +332,8 @@ def main() -> None:
             outln(getMinSlide(board,board_size,min_slide_estimate))
         else:
             outln('no solution')
+        """
 
-
-max_slide=0 #global
 
 if __name__=='__main__': main()
 
