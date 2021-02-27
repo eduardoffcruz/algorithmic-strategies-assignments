@@ -60,6 +60,10 @@ int *slideTo(int direction, int* board, int size, int* after_elem_count){
                     non_zeros++;
                 }
             }
+        } else if (direction==1) {
+
+        } else if (direction==3) {
+            
         }
         memcpy(&after_board[i*size],slide(aux,&non_zeros,size),size);
         //after_board[i*size]=slide(aux,&non_zeros,size);
@@ -67,26 +71,7 @@ int *slideTo(int direction, int* board, int size, int* after_elem_count){
     }
     return after_board;
 }
-int *slideLeft(int board[],int size,int *after_elem_count){
-    int elem,non_zeros;
-    int *aux,*after_board=(int*)malloc(size*size*sizeof(int));
-    after_elem_count=0;
-    for(int i=0; i<size; i++){
-        aux=initZeroArray(size);
-        non_zeros=0;
-        for(int j=size-1; j>-1; j--){
-            elem=board[i*size+j];
-            if(elem!=0){
-                aux[non_zeros]=elem;
-                non_zeros++;
-            }
-        }
-        memcpy(&after_board[i*size],slide(aux,&non_zeros,size),size);
-        //after_board[i*size]=slide(aux,&non_zeros,size);
-        after_elem_count=after_elem_count+non_zeros;
-    }
-    return after_board;
-}
+
 int *slide(int line[],int *non_zeros, int board_size){
     //returns after_elem_count
     int *final=initZeroArray(board_size);
