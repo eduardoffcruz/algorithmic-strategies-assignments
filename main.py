@@ -228,6 +228,7 @@ def isBase2(n):
 """
 
 def func(flatten_board,elem_count):
+    #flatten_board has no zeros
     slide_count=0
     while(slide_count<=max_slide):
         if(elem_count<=1):
