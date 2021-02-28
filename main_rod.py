@@ -21,7 +21,7 @@ def readBoard(size: int):
             board_line[i_board_line]= x
             i_board_line+=1
             if x!=0: occ[int(log2(x))]+=1
-        board[k]= board_line #append has better performance than concat (+), append uses the same list while concat creates a new instance of a list
+        board[k]= board_line
     return board,occ
 
 #   PRINTERS ----------------------------------------------
@@ -35,13 +35,12 @@ def printBoard(board: list, size: int) -> None:
 
 #   SLIDERS -----------------------------------------------
 def slideRight(board: list, size: int):
-    #a new matrix is created so that 'board' remains imaculated
-    board_after= [None]*size 
+    board_after= [[None]*size[0]]*size[1] 
     after_elem_count, before_elem_count = 0, 0
-    for row in range(size):
+    for row in range(size[0]):
         aux = []
         non_zeros=0
-        for column in range(size):
+        for column in range(size[1]):
             elem=board[row][column]
             if elem!=0:
                 aux.append(elem)
@@ -51,12 +50,12 @@ def slideRight(board: list, size: int):
         after_elem_count+=after_count
     return before_elem_count,after_elem_count,board_after  
 def slideLeft(board:list, size:int):
-    board_after= [None]*size 
+    board_after= [[None]*size[0]]*size[1]
     before_elem_count, after_elem_count = 0, 0
-    for row in range(size):
+    for row in range(size[0]):
         aux = []
         non_zeros=0
-        for column in range(size-1,-1,-1):
+        for column in range(size[1]-1,-1,-1):
             elem=board[row][column]
             if elem!=0:
                 aux.append(elem)
@@ -66,12 +65,12 @@ def slideLeft(board:list, size:int):
         after_elem_count+=after_count
     return before_elem_count,after_elem_count,board_after
 def slideDown(board:list,size:int):
-    board_after= [None]*size 
+    board_after= [[None]*size[0]]*size[1]
     before_elem_count, after_elem_count = 0, 0
-    for row in range(size):
+    for row in range(size[0]):
         aux = []
         non_zeros=0
-        for column in range(size):
+        for column in range(size[1]):
             elem=board[column][row]
             if elem!=0:
                 aux.append(elem)
@@ -81,12 +80,12 @@ def slideDown(board:list,size:int):
         after_elem_count+=after_count
     return before_elem_count,after_elem_count,board_after  
 def slideUp(board:list,size:int):
-    board_after= [None]*size 
+    board_after= [[None]*size[0]]*size[1]
     before_elem_count, after_elem_count = 0, 0
-    for row in range(size):
+    for row in range(size[0]):
         aux = []
         non_zeros=0
-        for column in range(size-1,-1,-1):
+        for column in range(size[1]-1,-1,-1):
             elem=board[column][row]
             if elem!=0:
                 aux.append(elem)
@@ -99,7 +98,7 @@ def slide(orig_row:list, size:int, non_zeros:int):
     # orig_row:   ''compressed'' line e.g: [1,3] instead of [1,0,3,0] 
     # size:  size of original board
     # non_zeros: equal to len(orig_row)
-    final= [0]*size
+    final= [[0]*size[0]]*size[1]
     orig_col, final_col= non_zeros-2, 0
     while orig_col>=0:
         if orig_row[orig_col]==orig_row[orig_col+1]:
@@ -129,15 +128,7 @@ def isBase2(n:int) -> bool: return (n & (n-1) == 0) and n != 0
 
 #   RECURSIVITY -------------------------------------------
 def getColumn(matrix:list, column:int) -> list: return [row[column] for row in matrix]
-
-def recursiveTries(board:list,board_size:list,slide_count:int):
-    global max_slide
-    zero_row, zero_column= [0]*board_size[0], [0]*board_size[1]
-    if getColumn(board, 0)==zero_column: [row.pop(0) for row in board]
-    elif getColumn(board, board_size[1]-1)==zero_column: [row.pop(board_size[1]-1) for row in board]
-    if getColumn(board, 0)==zero_row: board.pop(0)
-    elif getColumn(board, board_size[0]-1)==zero_row: board.pop(board_size[0]-1)
-
+def getBestSlide(board:list, board_size:list):
     best_slide_right, best_slide_left, best_slide_up, best_slide_down= 0, 0, 0, 0
     for row in range(1, board_size[0]-1):
         for column in range(1, board_size[1]-1):
@@ -157,16 +148,29 @@ def recursiveTries(board:list,board_size:list,slide_count:int):
             if board[row+1][column+1]==board[row][column]: 
                 best_slide_right+=1
                 best_slide_down+=1
-    
-    if   best_slide_down>=best_slide_left  and best_slide_down>=best_slide_right and best_slide_down>=best_slide_up:  best_matrix=slideDown(board, board_size)
-    elif best_slide_up>=best_slide_left    and best_slide_up>=best_slide_right   and best_slide_up>=best_slide_down:  best_matrix=slideUp(board, board_size)
-    elif best_slide_left>=best_slide_down  and best_slide_left>=best_slide_right and best_slide_left>=best_slide_up:  best_matrix=slideLeft(board, board_size)
-    elif best_slide_right>=best_slide_left and best_slide_right>=best_slide_down and best_slide_right>=best_slide_up: best_matrix=slideRight(board, board_size)
-    recursiveTries
+    return best_slide_right, best_slide_left, best_slide_up, best_slide_down
+
+def recursiveTries(board:list, board_size:list, slide_count:int,before_elem:int, after_elem:int, max_slide:int):
+    if slide_count<max_slide: 
+        zero_row, zero_column= [0]*board_size[0], [0]*board_size[1]
+        if getColumn(board, 0)==zero_column: [row.pop(0) for row in board]
+        elif getColumn(board, board_size[1]-1)==zero_column: [row.pop(board_size[1]-1) for row in board]
+        if getColumn(board, 0)==zero_row: board.pop(0)
+        elif getColumn(board, board_size[0]-1)==zero_row: board.pop(board_size[0]-1)
+
+        best_slide_right, best_slide_left, best_slide_up, best_slide_down= getBestSlide(board, board_size)
+        
+        if   best_slide_down>=best_slide_left  and best_slide_down>=best_slide_right and best_slide_down>=best_slide_up:  best_matrix=slideDown(board, board_size)
+        elif best_slide_up>=best_slide_left    and best_slide_up>=best_slide_right   and best_slide_up>=best_slide_down:  best_matrix=slideUp(board, board_size)
+        elif best_slide_left>=best_slide_down  and best_slide_left>=best_slide_right and best_slide_left>=best_slide_up:  best_matrix=slideLeft(board, board_size)
+        elif best_slide_right>=best_slide_left and best_slide_right>=best_slide_down and best_slide_right>=best_slide_up: best_matrix=slideRight(board, board_size)
+        recursiveTries(best_matrix, board_size, slide_count+1)
+    else: return -1
 
     
 def getMinSlide(board:list, board_size:list):
-    answer = recursiveTries(board, board_size, 0)
+    global max_slide
+    answer = recursiveTries(board, board_size, 0, max_slide)
     if answer == -1: return 'no solution'
     else: return str(answer)
 
@@ -184,11 +188,12 @@ def main() -> None:
 
 max_slide=0 #global
 
-def test():
+#   the size must be = 2^x
+def generateDoableMatrix(size:int):
     orig_l= [0, 0, 128, 64, 32, 16, 8, 4, 2, 1, 0]
     aux_l= [0, 0, 128, 64, 32, 16, 8, 4, 2, 1, 0]
     max_slide, i_l= 50, 0
-    size_matrix= [16, 16]
+    size_matrix= [size, size]
     m = [[0 for col in range(size_matrix[0])] for row in range(size_matrix[0])]
 
     for row in range(size_matrix[0]):
@@ -201,11 +206,9 @@ def test():
         if count_nonzero(aux_l)==0: break
 
     printBoard(m, size_matrix)
-    #if isCandidate(orig_l): outln(getMinSlide(m, size_matrix))
-    #else: outln('no solution')
 
 if __name__=='__main__': 
-    #main()
-    test()
+    main()
+    #test()
 
 #pypy3 main.py -m py_compile < test.txt
