@@ -9,7 +9,6 @@ def readBoardParams():
     line= readln().split(' ')
     size= int(line[0])
     return [size, size], int(line[1])
-
 def readBoard(size: int):
     board=[None]*size
     occ=[0]*11 #(log2(2048))

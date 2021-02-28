@@ -1,37 +1,41 @@
 from sys import stdin,stdout
-import math
+from math import log2
+from numpy import count_nonzero
+from random import randint
 
 #   READERS -----------------------------------------------
 def readln() -> str: return stdin.readline().rstrip()
 def readBoardParams():
     line= readln().split(' ')
-    board_size=int(line[0]) #N
-    max_slide=int(line[1]) #M , represents the maximum number of slides allowed
-    return board_size,max_slide
-
-def readBoard(size):
-    board=[]
-    #flatten_board=[]
-    #count=0
+    size= int(line[0])
+    return [size, size], int(line[1])
+def readBoard(size: int):
+    board=[None]*size
     occ=[0]*11 #(log2(2048))
     for k in range(size):
         ln=readln().split(' ')
-        board_line=[]
+        board_line, i_board_line= [None]*size, 0
         for n in ln:
             x=int(n)
-            board_line.append(x)
-            if(x!=0):
-                #flatten_board.append(x)
-                #count+=1
-                occ[int(math.log2(x))]+=1
-        board.append(board_line) #append has better performance than concat (+), append uses the same list while concat creates a new instance of a list
-    return board,occ #,flatten_board,count #,occ
+            board_line[i_board_line]= x
+            i_board_line+=1
+            if x!=0: occ[int(log2(x))]+=1
+        board[k]= board_line
+    return board,occ
 
 #   PRINTERS ----------------------------------------------
 def outln(n: int) -> None: 
     stdout.write(str(n))
     stdout.write('\n')
+def printBoard(board: list, size: int) -> None:
+    for i in range(size[0]):
+        for j in range(size[1]): stdout.write(str(board[i][j])+' ')
+        stdout.write('\n')
 
+#   PRINTERS ----------------------------------------------
+def outln(n: int) -> None: 
+    stdout.write(str(n))
+    stdout.write('\n')
 def printBoard(board: list, size: int) -> None:
     for i in range(size):
         for j in range(size): 
@@ -40,7 +44,7 @@ def printBoard(board: list, size: int) -> None:
 
 #   SLIDERS -----------------------------------------------
 def slideRight(board: list, size: int):
-    board_after= [[None]*size[0]]*size[1] 
+    board_after= [[None]*size[1]]*size[0]
     after_elem_count, before_elem_count = 0, 0
     for row in range(size[0]):
         aux = []
@@ -55,7 +59,7 @@ def slideRight(board: list, size: int):
         after_elem_count+=after_count
     return before_elem_count,after_elem_count,board_after  
 def slideLeft(board:list, size:int):
-    board_after= [[None]*size[0]]*size[1]
+    board_after= [[None]*size[1]]*size[0]
     before_elem_count, after_elem_count = 0, 0
     for row in range(size[0]):
         aux = []
@@ -70,7 +74,7 @@ def slideLeft(board:list, size:int):
         after_elem_count+=after_count
     return before_elem_count,after_elem_count,board_after
 def slideDown(board:list,size:int):
-    board_after= [[None]*size[0]]*size[1]
+    board_after= [[None]*size[1]]*size[0]
     before_elem_count, after_elem_count = 0, 0
     for row in range(size[0]):
         aux = []
@@ -85,7 +89,7 @@ def slideDown(board:list,size:int):
         after_elem_count+=after_count
     return before_elem_count,after_elem_count,board_after  
 def slideUp(board:list,size:int):
-    board_after= [[None]*size[0]]*size[1]
+    board_after= [[None]*size[1]]*size[0]
     before_elem_count, after_elem_count = 0, 0
     for row in range(size[0]):
         aux = []
@@ -160,12 +164,11 @@ def recursiveTries(board:list, board_size:list, slide_count:int, before_elem:int
         d = recursiveTries(after_board_d, board_size, slide_count+1, before_elem_count_d, after_elem_count_d, hash_table, max_slide)
     else: return -1
 
-def getMinSlide(board,board_size,max_slide):
-    #get value of minimum slides needed to finish the game.
-    #if number of slides needed is greater than max_slide, return 'no solution'
-    answer=recursiveTries(board,[16,16],0,0,0,dict(),max_slide)
-    if answer == -1: outln('no solution')
-    else: outln(answer)
+def getMinSlide(board:list, board_size:list):
+    global max_slide
+    answer=recursiveTries(board,board_size,0,0,0,dict(),max_slide)
+    if answer == -1: return 'no solution'
+    else: return str(answer)
 
 
 def isCandidate(occ):
@@ -177,29 +180,40 @@ def isCandidate(occ):
 def isBase2(n): return (n & (n-1) == 0) and n != 0
 
 def main() -> None:
+    global max_slide
     num_testcases= int(readln())
     #read test case parameters from stdin
     for k in range(num_testcases):
         board_size, max_slide= readBoardParams()
         #read board content from stdin
-        board,occ=readBoard(board_size)
-
+        board,occ= readBoard(board_size[0])
         #check if board isn't impossible
-        if(isCandidate(occ)):
-            getMinSlide(board,board_size,max_slide)
-        else:
-            outln('no solution')
+        if isCandidate(occ): outln(getMinSlide(board,board_size))
+        else: outln('no solution')
 
-        """
-        min_slide_estimate=func(flatten_board,elem_count)
-        if(min_slide_estimate!=-1):
-            #print('ok {}'.format(min_slide_estimate))
-            outln(getMinSlide(board,board_size,min_slide_estimate))
-        else:
-            outln('no solution')
-        """
+max_slide=0 #global
 
+#   the size must be = 2^x
+def generateDoableMatrix(size:int):
+    orig_l= [0, 0, 128, 64, 32, 16, 8, 4, 2, 1, 0]
+    aux_l= [0, 0, 128, 64, 32, 16, 8, 4, 2, 1, 0]
+    max_slide, i_l= 50, 0
+    size_matrix= [size, size]
+    m = [[0 for col in range(size_matrix[0])] for row in range(size_matrix[0])]
 
-if __name__=='__main__': main()
+    for row in range(size_matrix[0]):
+        for column in range(size_matrix[0]):
+            if count_nonzero(aux_l)==0: break
+            i_l= randint(0, len(aux_l)-1)
+            while aux_l[i_l]==0: i_l= randint(0, len(aux_l)-1)
+            m[row][column]= 2**(i_l+1)
+            aux_l[i_l]-=1
+        if count_nonzero(aux_l)==0: break
+
+    printBoard(m, size_matrix)
+
+if __name__=='__main__': 
+    main()
+    #test()
 
 #pypy3 main.py -m py_compile < test.txt
