@@ -225,24 +225,25 @@ def recursiveTries(board,board_size,slide_count,before_elem,after_elem,hash_tabl
         r = recursiveTries(after_board_r,s_r,slide_count+1,before_elem_count_r,after_elem_count_r,hash_table,max_slide)    
         u = recursiveTries(after_board_u,s_u,slide_count+1,before_elem_count_u,after_elem_count_u,hash_table,max_slide)
         d = recursiveTries(after_board_d,s_d,slide_count+1,before_elem_count_d,after_elem_count_d,hash_table,max_slide)
-   
-        if(after_elem_count_r<=3):
+        
+        """
+        if(after_elem_count_r<=8):
             print('R')
             print(r)
             printBoard(after_board_r,s_r)
-        if(after_elem_count_l<=3):
+        if(after_elem_count_l<=8):
             print('L')
             print(l)
             printBoard(after_board_l,s_l)
-        if(after_elem_count_u<=3):
+        if(after_elem_count_u<=8):
             print('U')
             print(u)
             printBoard(after_board_u,s_u)
-        if(after_elem_count_d<=3):
+        if(after_elem_count_d<=8):
             print('D')
             print(d)
             printBoard(after_board_d,s_d)
-    
+        """
         #print(" r:{}\n l:{}\n u:{}\n d:{}\n".format(r,l,u,d))
         if(r>=0 or l>=0 or u>=0 or d>=0): 
             return min(i for i in [r,l,u,d] if i>=0)
