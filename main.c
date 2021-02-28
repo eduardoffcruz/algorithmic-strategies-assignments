@@ -10,7 +10,7 @@ int **slideLeft(int *board[],int *size,int *after_elem_count );
 int **slideUp(int *board[],int *size,int *after_elem_count );
 int **slideDown(int *board[],int *size,int *after_elem_count);
 int *slide(int line[],int *non_zeros, int board_size);
-int isCandidate(int occ[],int *estimate);
+int isCandidate(int occ[]);
 int isBase2(int);
 int *initZeroArray(int size);
 int recursiveTries(int* board[], int board_size, int slide_count,int*,int);
@@ -36,7 +36,7 @@ typedef struct node{
 
 node *head=NULL;
 
-int max_slide; //GLOBAL
+int last_min_slide; //GLOBAL
 
 void insert(int *board[],int slide_count,int size){
     //insert in head
@@ -285,13 +285,11 @@ int _min(int l,int c){
     else
         return c;
 }
-int isCandidate(int occ[],int *estimate){
+int isCandidate(int occ[]){
     int count=0,len=11; //2^11=2048
     for(int i=0;i<len;i++){
         count=count+(occ[i]*(int)pow(2,i));
     }
-
-    *estimate=(int)log2(count)-1;
     return isBase2(count);
 }
 int isBase2(int n){
@@ -324,7 +322,7 @@ int isOdd(int n){
     //shouldnt reach this point, ever
     return 0;
 }*/
-int recursiveTries(int *board[], int board_size, int slide_count,int *elem_count, int estimate){
+int recursiveTries(int *board[], int board_size, int slide_count,int *elem_count,int max_slide){
     //return slide_count
     int elem_count_l,elem_count_r,elem_count_u,elem_count_d;
     int size_l=board_size,size_r=board_size,size_d=board_size,size_u=board_size;
@@ -337,12 +335,13 @@ int recursiveTries(int *board[], int board_size, int slide_count,int *elem_count
             printf("---------\n");
             print_board(board,board_size);
         }*/
+        if(last_min_slide!=-1 && slide_count>=last_min_slide){
+            //printf("tau\n");
+            return -1;
+        }
         if(*elem_count==1){
-            if(slide_count==estimate){
-                //best possible slide count has been reached
-                //stop all recursion
-                max_slide=0;
-            }
+            //printf("CHEGOU\n");
+            last_min_slide=slide_count;
             return slide_count;
         }
         //verification
@@ -365,10 +364,13 @@ int recursiveTries(int *board[], int board_size, int slide_count,int *elem_count
         after_board_u=slideUp(board,&size_u,&elem_count_u);
         after_board_d=slideDown(board,&size_d,&elem_count_d);
         ////
-        l=recursiveTries(after_board_l,size_l,slide_count+1,&elem_count_l,estimate);
-        r=recursiveTries(after_board_r,size_r,slide_count+1,&elem_count_r,estimate);
-        u=recursiveTries(after_board_u,size_u,slide_count+1,&elem_count_d,estimate);  
-        d=recursiveTries(after_board_d,size_d,slide_count+1,&elem_count_u,estimate);
+        d=recursiveTries(after_board_d,size_d,slide_count+1,&elem_count_u,max_slide);
+        u=recursiveTries(after_board_u,size_u,slide_count+1,&elem_count_d,max_slide);
+        r=recursiveTries(after_board_r,size_r,slide_count+1,&elem_count_r,max_slide);
+        l=recursiveTries(after_board_l,size_l,slide_count+1,&elem_count_l,max_slide);
+        
+          
+        
 
         if(r>=0 || l>=0 || d>=0 || u>=0){
             return min_slide(l,r,d,u);
@@ -424,10 +426,10 @@ int min_slide(int l, int r, int d,int u){
 
 
 
-void getMinSlide(int *board[],int board_size,int estimate){
+void getMinSlide(int *board[],int board_size,int max_slide){
     int answer,count=0;
-    //printf("estimate: %d\n",estimate);
-    answer = recursiveTries(board,board_size,0,&count,estimate);
+    last_min_slide=-1;
+    answer = recursiveTries(board,board_size,0,&count,max_slide);
     if(answer==-1)
         printf("no solution\n");
     else
@@ -440,7 +442,7 @@ int main(void){
     //read input
     int n,j,i,k,num_testcases,board_size;
     int **board,*occ;
-    int x,estimate;
+    int x,max_slide;
 
     scanf("%d",&num_testcases);
     for(n=0; n<num_testcases;n++){
@@ -459,9 +461,9 @@ int main(void){
         }
         //neste momento temos board
         //check if board isn't impossible 
-        if(isCandidate(occ,&estimate)){
+        if(isCandidate(occ)){
             head=NULL;
-            getMinSlide(board,board_size,estimate);
+            getMinSlide(board,board_size,max_slide);
         }
         else{
             printf("no solution\n");
