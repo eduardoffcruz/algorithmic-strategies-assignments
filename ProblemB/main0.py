@@ -16,8 +16,6 @@ def rec(h_list,curr_elem_count,up,k,h,max_h,counter):
         #no more combinations for k elements, add last 0
         if(abs(0-last)>=h): #breaks rule 3
             return counter
-
-        #TODO: increment counter!
         #print('--->',end='')
         #print(h_list)
         return counter+1
