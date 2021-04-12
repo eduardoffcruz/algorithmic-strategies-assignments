@@ -8,12 +8,21 @@ def mod_add(a: int, b: int, mod: int): return (mod_abs(a, mod) + mod_abs(b, mod)
 def mod_sub(a: int, b: int, mod: int): return mod_add(a, -b, mod)
 
 
-# { k: [[],[],[]] }
-def rec(h_list,curr_elem_count,up,k,h,max_h,counter):
+def rec(last,curr_elem_count,up,k,h,max_h,counter,dp,repeat):
     #max_h==H-h , valor pode ir de 1 até hi_max inclusivé
-    last=h_list[curr_elem_count-1]
+    #last=h_list[curr_elem_count-1]
     if(curr_elem_count>=k-1): #assures rule 2
         #no more combinations for k elements, add last 0
+        if(last in dp):
+            if(up in dp[last]):
+                dp[last][up]+=1*repeat
+            else:
+                dp[last][up]=1*repeat
+        else:
+            dp[last]=dict()
+            dp[last][up]=1*repeat
+
+
         if(abs(0-last)>=h): #breaks rule 3
             return counter
         #print('--->',end='')
@@ -44,16 +53,32 @@ def rec(h_list,curr_elem_count,up,k,h,max_h,counter):
                 continue
             elif(up and i<last):
                 aux_up=False #descending order
+            
 
-            h_list[curr_elem_count]=i
-            counter=rec(h_list,curr_elem_count+1,aux_up,k,h,max_h,counter)
+            counter=rec(i,curr_elem_count+1,aux_up,k,h,max_h,counter,dp,repeat)
 
     return counter
 
-def arcs_for_k_blocks(k,h,max_h):
-    h_list=[0]*k #[0]*500
+def arcs_for_k_blocks(k,h,max_h,dp):
+    #h_list=[0]*k #[0]*500
+    counter=0
+    new_dp=dict()
 
-    return rec(h_list,1,True,k,h,max_h,0)
+    for key in dp:
+        if(True in dp[key]):
+            aux_counter=counter
+            repeat=dp[key][True]
+            counter=rec(key,k-2,True,k,h,max_h,counter,new_dp,repeat)
+            #print(str(key)+' -> True: '+str(counter-aux_counter))
+            counter=mod_add((counter-aux_counter)*(repeat-1),counter,1000000007)
+        if(False in dp[key]):
+            aux_counter=counter
+            repeat=dp[key][False]
+            counter=rec(key,k-2,False,k,h,max_h,counter,new_dp,repeat)
+            #print(str(key)+' -> False: '+str(counter-aux_counter))
+            counter=mod_add((counter-aux_counter)*(repeat-1),counter,1000000007)
+
+    return counter,new_dp
 
 
 def func(n,h,H):
@@ -62,8 +87,13 @@ def func(n,h,H):
 
     max_h=H-h
     counter=0
-    for k in range(3,n+1): #k>=3 !!!!!
-        counter=mod_add(counter,arcs_for_k_blocks(k,h,max_h),1000000007)
+    dp=dict()
+    #k>=3 !!!!!
+    #calculate for k==3 first to fill dp
+    counter=rec(0,1,True,3,h,max_h,0,dp,1)
+    for k in range(4,n+1): 
+        res,dp=arcs_for_k_blocks(k,h,max_h,dp)
+        counter=mod_add(counter,res,1000000007)
     return counter
 
 def main() -> None:
