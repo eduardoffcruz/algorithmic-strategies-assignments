@@ -15,19 +15,18 @@ def rec(last,curr_elem_count,up,k,h,max_h,counter,dp,repeat):
         #no more combinations for k elements, add last 0
         if(last in dp):
             if(up in dp[last]):
-                dp[last][up]+=1*repeat
+                dp[last][up]+=repeat
             else:
-                dp[last][up]=1*repeat
+                dp[last][up]=repeat
         else:
             dp[last]=dict()
             dp[last][up]=1*repeat
-
 
         if(abs(0-last)>=h): #breaks rule 3
             return counter
         #print('--->',end='')
         #print(h_list)
-        return counter+1
+        return counter+repeat
 
     else:
         #assure rule 3
@@ -66,17 +65,11 @@ def arcs_for_k_blocks(k,h,max_h,dp):
 
     for key in dp:
         if(True in dp[key]):
-            aux_counter=counter
             repeat=dp[key][True]
             counter=rec(key,k-2,True,k,h,max_h,counter,new_dp,repeat)
-            #print(str(key)+' -> True: '+str(counter-aux_counter))
-            counter=mod_add((counter-aux_counter)*(repeat-1),counter,1000000007)
         if(False in dp[key]):
-            aux_counter=counter
             repeat=dp[key][False]
             counter=rec(key,k-2,False,k,h,max_h,counter,new_dp,repeat)
-            #print(str(key)+' -> False: '+str(counter-aux_counter))
-            counter=mod_add((counter-aux_counter)*(repeat-1),counter,1000000007)
 
     return counter,new_dp
 
@@ -102,8 +95,6 @@ def main() -> None:
         [n, h, H] = [int(parameter) for parameter in readln().split(' ')]
         outln(func(n,h,H))
 
-
-
-#board= [[0]*H for i in range(n)]
+#pypy3 main0.py -m py_compile < test.txt
 if __name__=="__main__":
     main()
