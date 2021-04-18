@@ -15,7 +15,21 @@ int mod_add(int a, int b, int mod) {
     return (mod_abs(a, mod) + mod_abs(b, mod)) % mod;
 }
 
-void rec(int last, int up, int *dp, int repeat){
+void print_dp(int *dp, int s){
+    int i,j;
+    for(i=0;i<s;i++){
+        printf("%d -> ",i+1);
+        for(j=0;j<2;j++){
+            if(j==0){
+                printf("False:");
+            }else{printf("True:");}
+            printf("%d ",dp[i*2+j]);
+        }
+        printf("\n");
+    }
+}
+
+void rec(int last,int curr_elem_count, int up, int *dp, int repeat, int *miss){
     int lower_bound, upper_bound,i,aux_up;
     unsigned int aux;
     //max_h==H-h , valor pode ir de 1 até hi_max inclusivé
@@ -45,8 +59,12 @@ void rec(int last, int up, int *dp, int repeat){
             }else{
                 counter=aux;
             }
-        } 
 
+            miss[i-1]=0;
+        } 
+        else{
+            miss[i-1]+=1;
+        }
         /***********************/
         aux=dp[(i-1)*2+aux_up]+repeat;
         if(aux>=MOD){
@@ -60,10 +78,40 @@ void rec(int last, int up, int *dp, int repeat){
     maior=i;
 }
 
-void arcs_for_k_blocks(int k, int *dp, int *new_dp){
-    int i,repeat_up,repeat_down;
+void arcs_for_k_blocks(int k, int *dp, int *new_dp, int *miss){
+    int i,j,repeat_up,repeat_down,aux;
     int x=maior+1;
-    int curr_elem_count=k-2;
+
+    int index=k-4,lim=(h-1)+(h-2)*index;
+
+    //UP
+    for(i=index;i<lim;i++){
+        for(j=0;j<(h-1)){
+           new_dp[i+1]+= 
+        }
+        
+        last=dp[i];
+    }
+
+
+[1,3,6,7,6,3,1]
+ +[1,3,6,7,6,3,1]
+   +[1,3,6,7,6,3,1]
+        =
+[1,4,10,16,19,16,10,4,1]
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     if(x>max_h){
         x=max_h;
@@ -73,27 +121,38 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
         max_h=limit;
     }
 
+    //printf("max_h: %d ; k: %d\n",max_h,k);
+    //printf("x: %d ; max_h: %d\n",x,max_h);
+    /*
+    printf("k=%d\n",k);
+    printf("down\t|\tup\n");
+    for(i=0;i<x;i++){
+        printf("%d\t|\t%d - i:%d\n",dp[2*i+0],dp[2*i+1],i+1);
+    }
     for(i=0;i<x;i++){
         if((repeat_down=dp[2*i+0])>0){
             dp[2*i+0]=0; //clean
-            rec(i+1,0,new_dp,repeat_down);
+            rec(i+1,curr_elem_count,0,k,new_dp,repeat_down,miss);
             
         }
-        if((repeat_up=dp[2*i+1])>0){
+        if( (repeat_up=dp[2*i+1])>0){
             dp[2*i+1]=0; //clean
-            rec(i+1,1,new_dp,repeat_up);
+            rec(i+1,curr_elem_count,1,k,new_dp,repeat_up,miss);
         }
        
-    }
+    }*/
+
 }
 
 void func(){
-    int k;
+    int k,i;
     int dp[max_h*2]; //[false,true]
     int new_dp[max_h*2];
+    int miss[max_h];
     int *pt_aux,*pt_dp=dp,*pt_new_dp=new_dp;
     memset(dp, 0, max_h*2*sizeof(int));
     memset(new_dp, 0, max_h*2*sizeof(int)); 
+    memset(miss, 0, max_h*sizeof(int)); 
     
     if(h<=1 || n<3){
         return; //impossivel
@@ -101,12 +160,21 @@ void func(){
 
     //k>=3 !!!!!
     //calculate for k==3 first to fill dp
-    rec(0,1,dp,1);
+    rec(0,1,1,3,dp,1,miss);
     for(k=4;k<=n;k++){
         pt_aux=pt_dp;
-        arcs_for_k_blocks(k,pt_dp,pt_new_dp);
+        arcs_for_k_blocks(k,pt_dp,pt_new_dp,miss);
         pt_dp=pt_new_dp;
         pt_new_dp=pt_aux;
+        
+    
+        printf("----\n"); 
+        for(i=0;i<limit;i++){
+        if(miss[i]!=0){
+            printf("k = %d | missed height %d , %d times\n",k,i+1,miss[i]);
+        }
+        }
+        memset(miss, 0, max_h*sizeof(int));
     }
 
     /*

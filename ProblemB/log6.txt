@@ -1,0 +1,1483 @@
+k=4
+down	|	up
+0	|	1 - i:1
+0	|	1 - i:2
+0	|	1 - i:3
+0	|	0 - i:4
+0	|	0 - i:5
+----
+k = 4 | missed height 4 , 3 times
+k = 4 | missed height 5 , 2 times
+k = 4 | missed height 6 , 1 times
+k=5
+down	|	up
+2	|	0 - i:1
+1	|	1 - i:2
+0	|	2 - i:3
+0	|	3 - i:4
+0	|	2 - i:5
+0	|	1 - i:6
+0	|	0 - i:7
+0	|	0 - i:8
+----
+k = 5 | missed height 4 , 4 times
+k = 5 | missed height 5 , 4 times
+k = 5 | missed height 6 , 3 times
+k = 5 | missed height 7 , 3 times
+k = 5 | missed height 8 , 2 times
+k = 5 | missed height 9 , 1 times
+k=6
+down	|	up
+7	|	0 - i:1
+7	|	0 - i:2
+6	|	1 - i:3
+3	|	3 - i:4
+1	|	6 - i:5
+0	|	7 - i:6
+0	|	6 - i:7
+0	|	3 - i:8
+0	|	1 - i:9
+0	|	0 - i:10
+0	|	0 - i:11
+----
+k = 6 | missed height 4 , 5 times
+k = 6 | missed height 5 , 5 times
+k = 6 | missed height 6 , 6 times
+k = 6 | missed height 7 , 5 times
+k = 6 | missed height 8 , 4 times
+k = 6 | missed height 9 , 3 times
+k = 6 | missed height 10 , 3 times
+k = 6 | missed height 11 , 2 times
+k = 6 | missed height 12 , 1 times
+k=7
+down	|	up
+20	|	0 - i:1
+20	|	0 - i:2
+20	|	0 - i:3
+20	|	1 - i:4
+16	|	4 - i:5
+10	|	10 - i:6
+4	|	16 - i:7
+1	|	19 - i:8
+0	|	16 - i:9
+0	|	10 - i:10
+0	|	4 - i:11
+0	|	1 - i:12
+0	|	0 - i:13
+0	|	0 - i:14
+----
+k = 7 | missed height 4 , 6 times
+k = 7 | missed height 5 , 7 times
+k = 7 | missed height 6 , 7 times
+k = 7 | missed height 7 , 7 times
+k = 7 | missed height 8 , 6 times
+k = 7 | missed height 9 , 6 times
+k = 7 | missed height 10 , 5 times
+k = 7 | missed height 11 , 4 times
+k = 7 | missed height 12 , 3 times
+k = 7 | missed height 13 , 3 times
+k = 7 | missed height 14 , 2 times
+k = 7 | missed height 15 , 1 times
+k=8
+down	|	up
+61	|	0 - i:1
+61	|	0 - i:2
+61	|	0 - i:3
+60	|	0 - i:4
+60	|	1 - i:5
+56	|	5 - i:6
+46	|	15 - i:7
+30	|	30 - i:8
+15	|	45 - i:9
+5	|	51 - i:10
+1	|	45 - i:11
+0	|	30 - i:12
+0	|	15 - i:13
+0	|	5 - i:14
+0	|	1 - i:15
+0	|	0 - i:16
+0	|	0 - i:17
+----
+k = 8 | missed height 4 , 6 times
+k = 8 | missed height 5 , 6 times
+k = 8 | missed height 6 , 7 times
+k = 8 | missed height 7 , 8 times
+k = 8 | missed height 8 , 9 times
+k = 8 | missed height 9 , 8 times
+k = 8 | missed height 10 , 7 times
+k = 8 | missed height 11 , 6 times
+k = 8 | missed height 12 , 6 times
+k = 8 | missed height 13 , 5 times
+k = 8 | missed height 14 , 4 times
+k = 8 | missed height 15 , 3 times
+k = 8 | missed height 16 , 3 times
+k = 8 | missed height 17 , 2 times
+k = 8 | missed height 18 , 1 times
+k=9
+down	|	up
+182	|	0 - i:1
+182	|	0 - i:2
+182	|	0 - i:3
+183	|	0 - i:4
+182	|	0 - i:5
+181	|	1 - i:6
+176	|	6 - i:7
+162	|	21 - i:8
+132	|	50 - i:9
+91	|	90 - i:10
+50	|	126 - i:11
+21	|	141 - i:12
+6	|	126 - i:13
+1	|	90 - i:14
+0	|	50 - i:15
+0	|	21 - i:16
+0	|	6 - i:17
+0	|	1 - i:18
+0	|	0 - i:19
+0	|	0 - i:20
+----
+k = 9 | missed height 4 , 5 times
+k = 9 | missed height 5 , 6 times
+k = 9 | missed height 6 , 6 times
+k = 9 | missed height 7 , 7 times
+k = 9 | missed height 8 , 8 times
+k = 9 | missed height 9 , 9 times
+k = 9 | missed height 10 , 9 times
+k = 9 | missed height 11 , 9 times
+k = 9 | missed height 12 , 8 times
+k = 9 | missed height 13 , 7 times
+k = 9 | missed height 14 , 6 times
+k = 9 | missed height 15 , 6 times
+k = 9 | missed height 16 , 5 times
+k = 9 | missed height 17 , 4 times
+k = 9 | missed height 18 , 3 times
+k = 9 | missed height 19 , 3 times
+k = 9 | missed height 20 , 2 times
+k = 9 | missed height 21 , 1 times
+k=10
+down	|	up
+547	|	0 - i:1
+547	|	0 - i:2
+547	|	0 - i:3
+546	|	0 - i:4
+547	|	0 - i:5
+547	|	0 - i:6
+546	|	1 - i:7
+539	|	7 - i:8
+519	|	28 - i:9
+470	|	77 - i:10
+385	|	161 - i:11
+273	|	266 - i:12
+162	|	357 - i:13
+77	|	393 - i:14
+28	|	357 - i:15
+7	|	266 - i:16
+1	|	161 - i:17
+0	|	77 - i:18
+0	|	28 - i:19
+0	|	7 - i:20
+0	|	1 - i:21
+0	|	0 - i:22
+0	|	0 - i:23
+----
+k = 10 | missed height 4 , 4 times
+k = 10 | missed height 5 , 5 times
+k = 10 | missed height 6 , 6 times
+k = 10 | missed height 7 , 6 times
+k = 10 | missed height 8 , 7 times
+k = 10 | missed height 9 , 8 times
+k = 10 | missed height 10 , 9 times
+k = 10 | missed height 11 , 9 times
+k = 10 | missed height 12 , 9 times
+k = 10 | missed height 13 , 9 times
+k = 10 | missed height 14 , 9 times
+k = 10 | missed height 15 , 8 times
+k = 10 | missed height 16 , 7 times
+k = 10 | missed height 17 , 6 times
+k = 10 | missed height 18 , 6 times
+k = 10 | missed height 19 , 5 times
+k = 10 | missed height 20 , 4 times
+k = 10 | missed height 21 , 3 times
+k = 10 | missed height 22 , 3 times
+k = 10 | missed height 23 , 2 times
+k = 10 | missed height 24 , 1 times
+k=11
+down	|	up
+1640	|	0 - i:1
+1640	|	0 - i:2
+1640	|	0 - i:3
+1641	|	0 - i:4
+1640	|	0 - i:5
+1640	|	0 - i:6
+1640	|	0 - i:7
+1640	|	1 - i:8
+1632	|	8 - i:9
+1604	|	36 - i:10
+1528	|	112 - i:11
+1374	|	266 - i:12
+1128	|	504 - i:13
+820	|	784 - i:14
+512	|	1016 - i:15
+267	|	1107 - i:16
+112	|	1016 - i:17
+36	|	784 - i:18
+8	|	504 - i:19
+1	|	266 - i:20
+0	|	112 - i:21
+0	|	36 - i:22
+0	|	8 - i:23
+0	|	1 - i:24
+0	|	0 - i:25
+0	|	0 - i:26
+----
+k = 11 | missed height 4 , 3 times
+k = 11 | missed height 5 , 4 times
+k = 11 | missed height 6 , 5 times
+k = 11 | missed height 7 , 6 times
+k = 11 | missed height 8 , 6 times
+k = 11 | missed height 9 , 7 times
+k = 11 | missed height 10 , 8 times
+k = 11 | missed height 11 , 9 times
+k = 11 | missed height 12 , 9 times
+k = 11 | missed height 13 , 9 times
+k = 11 | missed height 14 , 9 times
+k = 11 | missed height 15 , 9 times
+k = 11 | missed height 16 , 9 times
+k = 11 | missed height 17 , 9 times
+k = 11 | missed height 18 , 8 times
+k = 11 | missed height 19 , 7 times
+k = 11 | missed height 20 , 6 times
+k = 11 | missed height 21 , 6 times
+k = 11 | missed height 22 , 5 times
+k = 11 | missed height 23 , 4 times
+k = 11 | missed height 24 , 3 times
+k = 11 | missed height 25 , 3 times
+k = 11 | missed height 26 , 2 times
+k = 11 | missed height 27 , 1 times
+k=12
+down	|	up
+4921	|	0 - i:1
+4921	|	0 - i:2
+4921	|	0 - i:3
+4920	|	0 - i:4
+4921	|	0 - i:5
+4921	|	0 - i:6
+4921	|	0 - i:7
+4920	|	0 - i:8
+4920	|	1 - i:9
+4912	|	9 - i:10
+4876	|	45 - i:11
+4764	|	156 - i:12
+4506	|	414 - i:13
+4030	|	882 - i:14
+3322	|	1554 - i:15
+2460	|	2304 - i:16
+1599	|	2907 - i:17
+891	|	3139 - i:18
+415	|	2907 - i:19
+156	|	2304 - i:20
+45	|	1554 - i:21
+9	|	882 - i:22
+1	|	414 - i:23
+0	|	156 - i:24
+0	|	45 - i:25
+0	|	9 - i:26
+0	|	1 - i:27
+0	|	0 - i:28
+0	|	0 - i:29
+----
+k = 12 | missed height 4 , 3 times
+k = 12 | missed height 5 , 3 times
+k = 12 | missed height 6 , 4 times
+k = 12 | missed height 7 , 5 times
+k = 12 | missed height 8 , 6 times
+k = 12 | missed height 9 , 6 times
+k = 12 | missed height 10 , 7 times
+k = 12 | missed height 11 , 8 times
+k = 12 | missed height 12 , 9 times
+k = 12 | missed height 13 , 9 times
+k = 12 | missed height 14 , 9 times
+k = 12 | missed height 15 , 9 times
+k = 12 | missed height 16 , 9 times
+k = 12 | missed height 17 , 9 times
+k = 12 | missed height 18 , 9 times
+k = 12 | missed height 19 , 9 times
+k = 12 | missed height 20 , 9 times
+k = 12 | missed height 21 , 8 times
+k = 12 | missed height 22 , 7 times
+k = 12 | missed height 23 , 6 times
+k = 12 | missed height 24 , 6 times
+k = 12 | missed height 25 , 5 times
+k = 12 | missed height 26 , 4 times
+k = 12 | missed height 27 , 3 times
+k = 12 | missed height 28 , 3 times
+k = 12 | missed height 29 , 2 times
+k = 12 | missed height 30 , 1 times
+k=13
+down	|	up
+14762	|	0 - i:1
+14762	|	0 - i:2
+14762	|	0 - i:3
+14763	|	0 - i:4
+14762	|	0 - i:5
+14762	|	0 - i:6
+14762	|	0 - i:7
+14763	|	0 - i:8
+14762	|	0 - i:9
+14761	|	1 - i:10
+14752	|	10 - i:11
+14708	|	55 - i:12
+14552	|	210 - i:13
+14146	|	615 - i:14
+13300	|	1452 - i:15
+11858	|	2850 - i:16
+9812	|	4740 - i:17
+7381	|	6765 - i:18
+4950	|	8350 - i:19
+2905	|	8953 - i:20
+1462	|	8350 - i:21
+616	|	6765 - i:22
+210	|	4740 - i:23
+55	|	2850 - i:24
+10	|	1452 - i:25
+1	|	615 - i:26
+0	|	210 - i:27
+0	|	55 - i:28
+0	|	10 - i:29
+0	|	1 - i:30
+0	|	0 - i:31
+0	|	0 - i:32
+----
+k = 13 | missed height 4 , 3 times
+k = 13 | missed height 5 , 3 times
+k = 13 | missed height 6 , 3 times
+k = 13 | missed height 7 , 4 times
+k = 13 | missed height 8 , 5 times
+k = 13 | missed height 9 , 6 times
+k = 13 | missed height 10 , 6 times
+k = 13 | missed height 11 , 7 times
+k = 13 | missed height 12 , 8 times
+k = 13 | missed height 13 , 9 times
+k = 13 | missed height 14 , 9 times
+k = 13 | missed height 15 , 9 times
+k = 13 | missed height 16 , 9 times
+k = 13 | missed height 17 , 9 times
+k = 13 | missed height 18 , 9 times
+k = 13 | missed height 19 , 9 times
+k = 13 | missed height 20 , 9 times
+k = 13 | missed height 21 , 9 times
+k = 13 | missed height 22 , 9 times
+k = 13 | missed height 23 , 9 times
+k = 13 | missed height 24 , 8 times
+k = 13 | missed height 25 , 7 times
+k = 13 | missed height 26 , 6 times
+k = 13 | missed height 27 , 6 times
+k = 13 | missed height 28 , 5 times
+k = 13 | missed height 29 , 4 times
+k = 13 | missed height 30 , 3 times
+k = 13 | missed height 31 , 3 times
+k = 13 | missed height 32 , 2 times
+k = 13 | missed height 33 , 1 times
+k=14
+down	|	up
+44287	|	0 - i:1
+44287	|	0 - i:2
+44287	|	0 - i:3
+44286	|	0 - i:4
+44287	|	0 - i:5
+44287	|	0 - i:6
+44287	|	0 - i:7
+44286	|	0 - i:8
+44287	|	0 - i:9
+44287	|	0 - i:10
+44286	|	1 - i:11
+44275	|	11 - i:12
+44221	|	66 - i:13
+44012	|	275 - i:14
+43406	|	880 - i:15
+41998	|	2277 - i:16
+39304	|	4917 - i:17
+34970	|	9042 - i:18
+29051	|	14355 - i:19
+22143	|	19855 - i:20
+15236	|	24068 - i:21
+9317	|	25653 - i:22
+4983	|	24068 - i:23
+2288	|	19855 - i:24
+881	|	14355 - i:25
+275	|	9042 - i:26
+66	|	4917 - i:27
+11	|	2277 - i:28
+1	|	880 - i:29
+0	|	275 - i:30
+0	|	66 - i:31
+0	|	11 - i:32
+0	|	1 - i:33
+0	|	0 - i:34
+0	|	0 - i:35
+----
+k = 14 | missed height 4 , 3 times
+k = 14 | missed height 5 , 3 times
+k = 14 | missed height 6 , 3 times
+k = 14 | missed height 7 , 3 times
+k = 14 | missed height 8 , 4 times
+k = 14 | missed height 9 , 5 times
+k = 14 | missed height 10 , 6 times
+k = 14 | missed height 11 , 6 times
+k = 14 | missed height 12 , 7 times
+k = 14 | missed height 13 , 8 times
+k = 14 | missed height 14 , 9 times
+k = 14 | missed height 15 , 9 times
+k = 14 | missed height 16 , 9 times
+k = 14 | missed height 17 , 9 times
+k = 14 | missed height 18 , 9 times
+k = 14 | missed height 19 , 9 times
+k = 14 | missed height 20 , 9 times
+k = 14 | missed height 21 , 9 times
+k = 14 | missed height 22 , 9 times
+k = 14 | missed height 23 , 9 times
+k = 14 | missed height 24 , 9 times
+k = 14 | missed height 25 , 9 times
+k = 14 | missed height 26 , 9 times
+k = 14 | missed height 27 , 8 times
+k = 14 | missed height 28 , 7 times
+k = 14 | missed height 29 , 6 times
+k = 14 | missed height 30 , 6 times
+k = 14 | missed height 31 , 5 times
+k = 14 | missed height 32 , 4 times
+k = 14 | missed height 33 , 3 times
+k = 14 | missed height 34 , 3 times
+k = 14 | missed height 35 , 2 times
+k = 14 | missed height 36 , 1 times
+k=15
+down	|	up
+132860	|	0 - i:1
+132860	|	0 - i:2
+132860	|	0 - i:3
+132861	|	0 - i:4
+132860	|	0 - i:5
+132860	|	0 - i:6
+132860	|	0 - i:7
+132861	|	0 - i:8
+132860	|	0 - i:9
+132860	|	0 - i:10
+132860	|	0 - i:11
+132860	|	1 - i:12
+132848	|	12 - i:13
+132782	|	78 - i:14
+132508	|	352 - i:15
+131639	|	1221 - i:16
+129416	|	3432 - i:17
+124708	|	8074 - i:18
+116272	|	16236 - i:19
+103325	|	28314 - i:20
+86164	|	43252 - i:21
+66430	|	58278 - i:22
+46696	|	69576 - i:23
+29536	|	73789 - i:24
+16588	|	69576 - i:25
+8152	|	58278 - i:26
+3444	|	43252 - i:27
+1222	|	28314 - i:28
+352	|	16236 - i:29
+78	|	8074 - i:30
+12	|	3432 - i:31
+1	|	1221 - i:32
+0	|	352 - i:33
+0	|	78 - i:34
+0	|	12 - i:35
+0	|	1 - i:36
+0	|	0 - i:37
+0	|	0 - i:38
+----
+k = 15 | missed height 4 , 3 times
+k = 15 | missed height 5 , 3 times
+k = 15 | missed height 6 , 3 times
+k = 15 | missed height 7 , 3 times
+k = 15 | missed height 8 , 3 times
+k = 15 | missed height 9 , 4 times
+k = 15 | missed height 10 , 5 times
+k = 15 | missed height 11 , 6 times
+k = 15 | missed height 12 , 6 times
+k = 15 | missed height 13 , 7 times
+k = 15 | missed height 14 , 8 times
+k = 15 | missed height 15 , 9 times
+k = 15 | missed height 16 , 9 times
+k = 15 | missed height 17 , 9 times
+k = 15 | missed height 18 , 9 times
+k = 15 | missed height 19 , 9 times
+k = 15 | missed height 20 , 9 times
+k = 15 | missed height 21 , 9 times
+k = 15 | missed height 22 , 9 times
+k = 15 | missed height 23 , 9 times
+k = 15 | missed height 24 , 9 times
+k = 15 | missed height 25 , 9 times
+k = 15 | missed height 26 , 9 times
+k = 15 | missed height 27 , 9 times
+k = 15 | missed height 28 , 9 times
+k = 15 | missed height 29 , 9 times
+k = 15 | missed height 30 , 8 times
+k = 15 | missed height 31 , 7 times
+k = 15 | missed height 32 , 6 times
+k = 15 | missed height 33 , 6 times
+k = 15 | missed height 34 , 5 times
+k = 15 | missed height 35 , 4 times
+k = 15 | missed height 36 , 3 times
+k = 15 | missed height 37 , 3 times
+k = 15 | missed height 38 , 2 times
+k = 15 | missed height 39 , 1 times
+k=16
+down	|	up
+398581	|	0 - i:1
+398581	|	0 - i:2
+398581	|	0 - i:3
+398580	|	0 - i:4
+398581	|	0 - i:5
+398581	|	0 - i:6
+398581	|	0 - i:7
+398580	|	0 - i:8
+398581	|	0 - i:9
+398581	|	0 - i:10
+398581	|	0 - i:11
+398580	|	0 - i:12
+398580	|	1 - i:13
+398568	|	13 - i:14
+398490	|	91 - i:15
+398138	|	442 - i:16
+396929	|	1651 - i:17
+393563	|	5005 - i:18
+385763	|	12727 - i:19
+370396	|	27742 - i:20
+344305	|	52624 - i:21
+305761	|	87802 - i:22
+255919	|	129844 - i:23
+199290	|	171106 - i:24
+142662	|	201643 - i:25
+92820	|	212941 - i:26
+54276	|	201643 - i:27
+28184	|	171106 - i:28
+12818	|	129844 - i:29
+5018	|	87802 - i:30
+1652	|	52624 - i:31
+442	|	27742 - i:32
+91	|	12727 - i:33
+13	|	5005 - i:34
+1	|	1651 - i:35
+0	|	442 - i:36
+0	|	91 - i:37
+0	|	13 - i:38
+0	|	1 - i:39
+0	|	0 - i:40
+0	|	0 - i:41
+----
+k = 16 | missed height 4 , 3 times
+k = 16 | missed height 5 , 3 times
+k = 16 | missed height 6 , 3 times
+k = 16 | missed height 7 , 3 times
+k = 16 | missed height 8 , 3 times
+k = 16 | missed height 9 , 3 times
+k = 16 | missed height 10 , 4 times
+k = 16 | missed height 11 , 5 times
+k = 16 | missed height 12 , 6 times
+k = 16 | missed height 13 , 6 times
+k = 16 | missed height 14 , 7 times
+k = 16 | missed height 15 , 8 times
+k = 16 | missed height 16 , 9 times
+k = 16 | missed height 17 , 9 times
+k = 16 | missed height 18 , 9 times
+k = 16 | missed height 19 , 9 times
+k = 16 | missed height 20 , 9 times
+k = 16 | missed height 21 , 9 times
+k = 16 | missed height 22 , 9 times
+k = 16 | missed height 23 , 9 times
+k = 16 | missed height 24 , 9 times
+k = 16 | missed height 25 , 9 times
+k = 16 | missed height 26 , 9 times
+k = 16 | missed height 27 , 9 times
+k = 16 | missed height 28 , 9 times
+k = 16 | missed height 29 , 9 times
+k = 16 | missed height 30 , 9 times
+k = 16 | missed height 31 , 9 times
+k = 16 | missed height 32 , 9 times
+k = 16 | missed height 33 , 8 times
+k = 16 | missed height 34 , 7 times
+k = 16 | missed height 35 , 6 times
+k = 16 | missed height 36 , 6 times
+k = 16 | missed height 37 , 5 times
+k = 16 | missed height 38 , 4 times
+k = 16 | missed height 39 , 3 times
+k = 16 | missed height 40 , 3 times
+k = 16 | missed height 41 , 2 times
+k = 16 | missed height 42 , 1 times
+k=17
+down	|	up
+1195742	|	0 - i:1
+1195742	|	0 - i:2
+1195742	|	0 - i:3
+1195743	|	0 - i:4
+1195742	|	0 - i:5
+1195742	|	0 - i:6
+1195742	|	0 - i:7
+1195743	|	0 - i:8
+1195742	|	0 - i:9
+1195742	|	0 - i:10
+1195742	|	0 - i:11
+1195743	|	0 - i:12
+1195742	|	0 - i:13
+1195741	|	1 - i:14
+1195728	|	14 - i:15
+1195638	|	105 - i:16
+1195196	|	546 - i:17
+1193557	|	2184 - i:18
+1188630	|	7098 - i:19
+1176255	|	19383 - i:20
+1149722	|	45474 - i:21
+1100464	|	93093 - i:22
+1020462	|	168168 - i:23
+905985	|	270270 - i:24
+760970	|	388752 - i:25
+597871	|	502593 - i:26
+434772	|	585690 - i:27
+289758	|	616227 - i:28
+175280	|	585690 - i:29
+95278	|	502593 - i:30
+46020	|	388752 - i:31
+19488	|	270270 - i:32
+7112	|	168168 - i:33
+2185	|	93093 - i:34
+546	|	45474 - i:35
+105	|	19383 - i:36
+14	|	7098 - i:37
+1	|	2184 - i:38
+0	|	546 - i:39
+0	|	105 - i:40
+0	|	14 - i:41
+0	|	1 - i:42
+0	|	0 - i:43
+0	|	0 - i:44
+----
+k = 17 | missed height 4 , 3 times
+k = 17 | missed height 5 , 3 times
+k = 17 | missed height 6 , 3 times
+k = 17 | missed height 7 , 3 times
+k = 17 | missed height 8 , 3 times
+k = 17 | missed height 9 , 3 times
+k = 17 | missed height 10 , 3 times
+k = 17 | missed height 11 , 4 times
+k = 17 | missed height 12 , 5 times
+k = 17 | missed height 13 , 6 times
+k = 17 | missed height 14 , 6 times
+k = 17 | missed height 15 , 7 times
+k = 17 | missed height 16 , 8 times
+k = 17 | missed height 17 , 9 times
+k = 17 | missed height 18 , 9 times
+k = 17 | missed height 19 , 9 times
+k = 17 | missed height 20 , 9 times
+k = 17 | missed height 21 , 9 times
+k = 17 | missed height 22 , 9 times
+k = 17 | missed height 23 , 9 times
+k = 17 | missed height 24 , 9 times
+k = 17 | missed height 25 , 9 times
+k = 17 | missed height 26 , 9 times
+k = 17 | missed height 27 , 9 times
+k = 17 | missed height 28 , 9 times
+k = 17 | missed height 29 , 9 times
+k = 17 | missed height 30 , 9 times
+k = 17 | missed height 31 , 9 times
+k = 17 | missed height 32 , 9 times
+k = 17 | missed height 33 , 9 times
+k = 17 | missed height 34 , 9 times
+k = 17 | missed height 35 , 9 times
+k = 17 | missed height 36 , 8 times
+k = 17 | missed height 37 , 7 times
+k = 17 | missed height 38 , 6 times
+k = 17 | missed height 39 , 6 times
+k = 17 | missed height 40 , 5 times
+k = 17 | missed height 41 , 4 times
+k = 17 | missed height 42 , 3 times
+k = 17 | missed height 43 , 3 times
+k = 17 | missed height 44 , 2 times
+k = 17 | missed height 45 , 1 times
+k=18
+down	|	up
+3587227	|	0 - i:1
+3587227	|	0 - i:2
+3587227	|	0 - i:3
+3587226	|	0 - i:4
+3587227	|	0 - i:5
+3587227	|	0 - i:6
+3587227	|	0 - i:7
+3587226	|	0 - i:8
+3587227	|	0 - i:9
+3587227	|	0 - i:10
+3587227	|	0 - i:11
+3587226	|	0 - i:12
+3587227	|	0 - i:13
+3587227	|	0 - i:14
+3587226	|	1 - i:15
+3587211	|	15 - i:16
+3587107	|	120 - i:17
+3586562	|	665 - i:18
+3584391	|	2835 - i:19
+3577383	|	9828 - i:20
+3558442	|	28665 - i:21
+3514607	|	71955 - i:22
+3426441	|	157950 - i:23
+3270648	|	306735 - i:24
+3026911	|	531531 - i:25
+2687417	|	827190 - i:26
+2264826	|	1161615 - i:27
+1793613	|	1477035 - i:28
+1322401	|	1704510 - i:29
+899810	|	1787607 - i:30
+560316	|	1704510 - i:31
+316578	|	1477035 - i:32
+160786	|	1161615 - i:33
+72620	|	827190 - i:34
+28785	|	531531 - i:35
+9843	|	306735 - i:36
+2836	|	157950 - i:37
+665	|	71955 - i:38
+120	|	28665 - i:39
+15	|	9828 - i:40
+1	|	2835 - i:41
+0	|	665 - i:42
+0	|	120 - i:43
+0	|	15 - i:44
+0	|	1 - i:45
+0	|	0 - i:46
+0	|	0 - i:47
+----
+k = 18 | missed height 4 , 3 times
+k = 18 | missed height 5 , 3 times
+k = 18 | missed height 6 , 3 times
+k = 18 | missed height 7 , 3 times
+k = 18 | missed height 8 , 3 times
+k = 18 | missed height 9 , 3 times
+k = 18 | missed height 10 , 3 times
+k = 18 | missed height 11 , 3 times
+k = 18 | missed height 12 , 4 times
+k = 18 | missed height 13 , 5 times
+k = 18 | missed height 14 , 6 times
+k = 18 | missed height 15 , 6 times
+k = 18 | missed height 16 , 7 times
+k = 18 | missed height 17 , 8 times
+k = 18 | missed height 18 , 9 times
+k = 18 | missed height 19 , 9 times
+k = 18 | missed height 20 , 9 times
+k = 18 | missed height 21 , 9 times
+k = 18 | missed height 22 , 9 times
+k = 18 | missed height 23 , 9 times
+k = 18 | missed height 24 , 9 times
+k = 18 | missed height 25 , 9 times
+k = 18 | missed height 26 , 9 times
+k = 18 | missed height 27 , 9 times
+k = 18 | missed height 28 , 9 times
+k = 18 | missed height 29 , 9 times
+k = 18 | missed height 30 , 9 times
+k = 18 | missed height 31 , 9 times
+k = 18 | missed height 32 , 9 times
+k = 18 | missed height 33 , 9 times
+k = 18 | missed height 34 , 9 times
+k = 18 | missed height 35 , 9 times
+k = 18 | missed height 36 , 9 times
+k = 18 | missed height 37 , 9 times
+k = 18 | missed height 38 , 9 times
+k = 18 | missed height 39 , 8 times
+k = 18 | missed height 40 , 7 times
+k = 18 | missed height 41 , 6 times
+k = 18 | missed height 42 , 6 times
+k = 18 | missed height 43 , 5 times
+k = 18 | missed height 44 , 4 times
+k = 18 | missed height 45 , 3 times
+k=19
+down	|	up
+10761680	|	0 - i:1
+10761680	|	0 - i:2
+10761680	|	0 - i:3
+10761681	|	0 - i:4
+10761680	|	0 - i:5
+10761680	|	0 - i:6
+10761680	|	0 - i:7
+10761681	|	0 - i:8
+10761680	|	0 - i:9
+10761680	|	0 - i:10
+10761680	|	0 - i:11
+10761681	|	0 - i:12
+10761680	|	0 - i:13
+10761680	|	0 - i:14
+10761680	|	0 - i:15
+10761680	|	1 - i:16
+10761664	|	16 - i:17
+10761544	|	136 - i:18
+10760880	|	800 - i:19
+10758060	|	3620 - i:20
+10748336	|	13328 - i:21
+10720216	|	41328 - i:22
+10650432	|	110448 - i:23
+10499490	|	258570 - i:24
+10211696	|	536640 - i:25
+9724000	|	996216 - i:26
+8984976	|	1665456 - i:27
+7979154	|	2520336 - i:28
+6745856	|	3465840 - i:29
+5380840	|	4343160 - i:30
+4015824	|	4969152 - i:31
+2782527	|	5196627 - i:32
+1776704	|	4969152 - i:33
+1037680	|	4343160 - i:34
+549984	|	3465840 - i:35
+262191	|	2520336 - i:36
+111248	|	1665456 - i:37
+41464	|	996216 - i:38
+13344	|	536640 - i:39
+3621	|	258570 - i:40
+800	|	110448 - i:41
+136	|	41328 - i:42
+16	|	13328 - i:43
+1	|	3620 - i:44
+0	|	800 - i:45
+----
+k = 19 | missed height 4 , 3 times
+k = 19 | missed height 5 , 3 times
+k = 19 | missed height 6 , 3 times
+k = 19 | missed height 7 , 3 times
+k = 19 | missed height 8 , 3 times
+k = 19 | missed height 9 , 3 times
+k = 19 | missed height 10 , 3 times
+k = 19 | missed height 11 , 3 times
+k = 19 | missed height 12 , 3 times
+k = 19 | missed height 13 , 4 times
+k = 19 | missed height 14 , 5 times
+k = 19 | missed height 15 , 6 times
+k = 19 | missed height 16 , 6 times
+k = 19 | missed height 17 , 7 times
+k = 19 | missed height 18 , 8 times
+k = 19 | missed height 19 , 9 times
+k = 19 | missed height 20 , 9 times
+k = 19 | missed height 21 , 9 times
+k = 19 | missed height 22 , 9 times
+k = 19 | missed height 23 , 9 times
+k = 19 | missed height 24 , 9 times
+k = 19 | missed height 25 , 9 times
+k = 19 | missed height 26 , 9 times
+k = 19 | missed height 27 , 9 times
+k = 19 | missed height 28 , 9 times
+k = 19 | missed height 29 , 9 times
+k = 19 | missed height 30 , 9 times
+k = 19 | missed height 31 , 9 times
+k = 19 | missed height 32 , 9 times
+k = 19 | missed height 33 , 9 times
+k = 19 | missed height 34 , 9 times
+k = 19 | missed height 35 , 9 times
+k = 19 | missed height 36 , 9 times
+k = 19 | missed height 37 , 9 times
+k = 19 | missed height 38 , 9 times
+k = 19 | missed height 39 , 9 times
+k = 19 | missed height 40 , 9 times
+k = 19 | missed height 41 , 9 times
+k = 19 | missed height 42 , 8 times
+k=20
+down	|	up
+32285041	|	0 - i:1
+32285041	|	0 - i:2
+32285041	|	0 - i:3
+32285040	|	0 - i:4
+32285041	|	0 - i:5
+32285041	|	0 - i:6
+32285041	|	0 - i:7
+32285040	|	0 - i:8
+32285041	|	0 - i:9
+32285041	|	0 - i:10
+32285041	|	0 - i:11
+32285040	|	0 - i:12
+32285041	|	0 - i:13
+32285041	|	0 - i:14
+32285041	|	0 - i:15
+32285040	|	0 - i:16
+32285040	|	1 - i:17
+32285024	|	17 - i:18
+32284888	|	153 - i:19
+32284088	|	952 - i:20
+32280484	|	4556 - i:21
+32267276	|	17748 - i:22
+32226612	|	58276 - i:23
+32118984	|	165104 - i:24
+31870138	|	410346 - i:25
+31361618	|	905658 - i:26
+30435186	|	1791426 - i:27
+28920672	|	3198312 - i:28
+26688130	|	5182008 - i:29
+23709986	|	7651632 - i:30
+20105850	|	10329336 - i:31
+16142520	|	12778152 - i:32
+12179191	|	14508939 - i:33
+8575055	|	15134931 - i:34
+5596911	|	14508939 - i:35
+3364368	|	12778152 - i:36
+1849855	|	10329336 - i:37
+923423	|	7651632 - i:38
+414903	|	5182008 - i:39
+166056	|	3198312 - i:40
+58429	|	1791426 - i:41
+17765	|	905658 - i:42
+----
+k = 20 | missed height 4 , 3 times
+k = 20 | missed height 5 , 3 times
+k = 20 | missed height 6 , 3 times
+k = 20 | missed height 7 , 3 times
+k = 20 | missed height 8 , 3 times
+k = 20 | missed height 9 , 3 times
+k = 20 | missed height 10 , 3 times
+k = 20 | missed height 11 , 3 times
+k = 20 | missed height 12 , 3 times
+k = 20 | missed height 13 , 3 times
+k = 20 | missed height 14 , 4 times
+k = 20 | missed height 15 , 5 times
+k = 20 | missed height 16 , 6 times
+k = 20 | missed height 17 , 6 times
+k = 20 | missed height 18 , 7 times
+k = 20 | missed height 19 , 8 times
+k = 20 | missed height 20 , 9 times
+k = 20 | missed height 21 , 9 times
+k = 20 | missed height 22 , 9 times
+k = 20 | missed height 23 , 9 times
+k = 20 | missed height 24 , 9 times
+k = 20 | missed height 25 , 9 times
+k = 20 | missed height 26 , 9 times
+k = 20 | missed height 27 , 9 times
+k = 20 | missed height 28 , 9 times
+k = 20 | missed height 29 , 9 times
+k = 20 | missed height 30 , 9 times
+k = 20 | missed height 31 , 9 times
+k = 20 | missed height 32 , 9 times
+k = 20 | missed height 33 , 9 times
+k = 20 | missed height 34 , 9 times
+k = 20 | missed height 35 , 9 times
+k = 20 | missed height 36 , 9 times
+k = 20 | missed height 37 , 9 times
+k = 20 | missed height 38 , 9 times
+k = 20 | missed height 39 , 9 times
+k=21
+down	|	up
+96855122	|	0 - i:1
+96855122	|	0 - i:2
+96855122	|	0 - i:3
+96855123	|	0 - i:4
+96855122	|	0 - i:5
+96855122	|	0 - i:6
+96855122	|	0 - i:7
+96855123	|	0 - i:8
+96855122	|	0 - i:9
+96855122	|	0 - i:10
+96855122	|	0 - i:11
+96855123	|	0 - i:12
+96855122	|	0 - i:13
+96855122	|	0 - i:14
+96855122	|	0 - i:15
+96855123	|	0 - i:16
+96855122	|	0 - i:17
+96855121	|	1 - i:18
+96855104	|	18 - i:19
+96854952	|	171 - i:20
+96854000	|	1122 - i:21
+96849460	|	5661 - i:22
+96831848	|	23256 - i:23
+96774372	|	80580 - i:24
+96612872	|	241128 - i:25
+96215734	|	633726 - i:26
+95350740	|	1481108 - i:27
+93666942	|	3107430 - i:28
+90717476	|	5895396 - i:29
+86043988	|	10171746 - i:30
+79318788	|	16031952 - i:31
+70503966	|	23162976 - i:32
+59958356	|	30759120 - i:33
+48427561	|	37616427 - i:34
+36896766	|	42422022 - i:35
+26351157	|	44152809 - i:36
+17536334	|	42422022 - i:37
+10811134	|	37616427 - i:38
+6137646	|	30759120 - i:39
+----
+k = 21 | missed height 4 , 3 times
+k = 21 | missed height 5 , 3 times
+k = 21 | missed height 6 , 3 times
+k = 21 | missed height 7 , 3 times
+k = 21 | missed height 8 , 3 times
+k = 21 | missed height 9 , 3 times
+k = 21 | missed height 10 , 3 times
+k = 21 | missed height 11 , 3 times
+k = 21 | missed height 12 , 3 times
+k = 21 | missed height 13 , 3 times
+k = 21 | missed height 14 , 3 times
+k = 21 | missed height 15 , 4 times
+k = 21 | missed height 16 , 5 times
+k = 21 | missed height 17 , 6 times
+k = 21 | missed height 18 , 6 times
+k = 21 | missed height 19 , 7 times
+k = 21 | missed height 20 , 8 times
+k = 21 | missed height 21 , 9 times
+k = 21 | missed height 22 , 9 times
+k = 21 | missed height 23 , 9 times
+k = 21 | missed height 24 , 9 times
+k = 21 | missed height 25 , 9 times
+k = 21 | missed height 26 , 9 times
+k = 21 | missed height 27 , 9 times
+k = 21 | missed height 28 , 9 times
+k = 21 | missed height 29 , 9 times
+k = 21 | missed height 30 , 9 times
+k = 21 | missed height 31 , 9 times
+k = 21 | missed height 32 , 9 times
+k = 21 | missed height 33 , 9 times
+k = 21 | missed height 34 , 9 times
+k = 21 | missed height 35 , 9 times
+k = 21 | missed height 36 , 9 times
+k=22
+down	|	up
+290565367	|	0 - i:1
+290565367	|	0 - i:2
+290565367	|	0 - i:3
+290565366	|	0 - i:4
+290565367	|	0 - i:5
+290565367	|	0 - i:6
+290565367	|	0 - i:7
+290565366	|	0 - i:8
+290565367	|	0 - i:9
+290565367	|	0 - i:10
+290565367	|	0 - i:11
+290565366	|	0 - i:12
+290565367	|	0 - i:13
+290565367	|	0 - i:14
+290565367	|	0 - i:15
+290565366	|	0 - i:16
+290565367	|	0 - i:17
+290565367	|	0 - i:18
+290565366	|	1 - i:19
+290565347	|	19 - i:20
+290565177	|	190 - i:21
+290564056	|	1311 - i:22
+290558412	|	6954 - i:23
+290535308	|	30039 - i:24
+290455680	|	109497 - i:25
+290219092	|	344964 - i:26
+289602978	|	955434 - i:27
+288179346	|	2355962 - i:28
+285233416	|	5222264 - i:29
+279735158	|	10483934 - i:30
+270428406	|	19174572 - i:31
+256080252	|	32099094 - i:32
+235866742	|	49366674 - i:33
+209781110	|	69954048 - i:34
+178889883	|	91538523 - i:35
+145282683	|	110797569 - i:36
+----
+k = 22 | missed height 4 , 3 times
+k = 22 | missed height 5 , 3 times
+k = 22 | missed height 6 , 3 times
+k = 22 | missed height 7 , 3 times
+k = 22 | missed height 8 , 3 times
+k = 22 | missed height 9 , 3 times
+k = 22 | missed height 10 , 3 times
+k = 22 | missed height 11 , 3 times
+k = 22 | missed height 12 , 3 times
+k = 22 | missed height 13 , 3 times
+k = 22 | missed height 14 , 3 times
+k = 22 | missed height 15 , 3 times
+k = 22 | missed height 16 , 4 times
+k = 22 | missed height 17 , 5 times
+k = 22 | missed height 18 , 6 times
+k = 22 | missed height 19 , 6 times
+k = 22 | missed height 20 , 7 times
+k = 22 | missed height 21 , 8 times
+k = 22 | missed height 22 , 9 times
+k = 22 | missed height 23 , 9 times
+k = 22 | missed height 24 , 9 times
+k = 22 | missed height 25 , 9 times
+k = 22 | missed height 26 , 9 times
+k = 22 | missed height 27 , 9 times
+k = 22 | missed height 28 , 9 times
+k = 22 | missed height 29 , 9 times
+k = 22 | missed height 30 , 9 times
+k = 22 | missed height 31 , 9 times
+k = 22 | missed height 32 , 9 times
+k = 22 | missed height 33 , 9 times
+k=23
+down	|	up
+871696100	|	0 - i:1
+871696100	|	0 - i:2
+871696100	|	0 - i:3
+871696101	|	0 - i:4
+871696100	|	0 - i:5
+871696100	|	0 - i:6
+871696100	|	0 - i:7
+871696101	|	0 - i:8
+871696100	|	0 - i:9
+871696100	|	0 - i:10
+871696100	|	0 - i:11
+871696101	|	0 - i:12
+871696100	|	0 - i:13
+871696100	|	0 - i:14
+871696100	|	0 - i:15
+871696101	|	0 - i:16
+871696100	|	0 - i:17
+871696100	|	0 - i:18
+871696100	|	0 - i:19
+871696100	|	1 - i:20
+871696080	|	20 - i:21
+871695890	|	210 - i:22
+871694580	|	1520 - i:23
+871687645	|	8455 - i:24
+871657776	|	38304 - i:25
+871549400	|	146490 - i:26
+871210080	|	484500 - i:27
+870277750	|	1409895 - i:28
+868001416	|	3656360 - i:29
+863015740	|	8533660 - i:30
+853147920	|	18062160 - i:31
+835396980	|	34880770 - i:32
+806243816	|	61757600 - i:33
+----
+k = 23 | missed height 4 , 3 times
+k = 23 | missed height 5 , 3 times
+k = 23 | missed height 6 , 3 times
+k = 23 | missed height 7 , 3 times
+k = 23 | missed height 8 , 3 times
+k = 23 | missed height 9 , 3 times
+k = 23 | missed height 10 , 3 times
+k = 23 | missed height 11 , 3 times
+k = 23 | missed height 12 , 3 times
+k = 23 | missed height 13 , 3 times
+k = 23 | missed height 14 , 3 times
+k = 23 | missed height 15 , 3 times
+k = 23 | missed height 16 , 3 times
+k = 23 | missed height 17 , 4 times
+k = 23 | missed height 18 , 5 times
+k = 23 | missed height 19 , 6 times
+k = 23 | missed height 20 , 6 times
+k = 23 | missed height 21 , 7 times
+k = 23 | missed height 22 , 8 times
+k = 23 | missed height 23 , 9 times
+k = 23 | missed height 24 , 9 times
+k = 23 | missed height 25 , 9 times
+k = 23 | missed height 26 , 9 times
+k = 23 | missed height 27 , 9 times
+k = 23 | missed height 28 , 9 times
+k = 23 | missed height 29 , 9 times
+k = 23 | missed height 30 , 9 times
+k=24
+down	|	up
+615088287	|	0 - i:1
+615088287	|	0 - i:2
+615088287	|	0 - i:3
+615088286	|	0 - i:4
+615088287	|	0 - i:5
+615088287	|	0 - i:6
+615088287	|	0 - i:7
+615088286	|	0 - i:8
+615088287	|	0 - i:9
+615088287	|	0 - i:10
+615088287	|	0 - i:11
+615088286	|	0 - i:12
+615088287	|	0 - i:13
+615088287	|	0 - i:14
+615088287	|	0 - i:15
+615088286	|	0 - i:16
+615088287	|	0 - i:17
+615088287	|	0 - i:18
+615088287	|	0 - i:19
+615088286	|	0 - i:20
+615088286	|	1 - i:21
+615088266	|	21 - i:22
+615088056	|	231 - i:23
+615086536	|	1750 - i:24
+615078101	|	10185 - i:25
+615039987	|	48279 - i:26
+614894807	|	193249 - i:27
+614417242	|	669294 - i:28
+613037216	|	2040885 - i:29
+609489232	|	5550755 - i:30
+----
+k = 24 | missed height 4 , 3 times
+k = 24 | missed height 5 , 3 times
+k = 24 | missed height 6 , 3 times
+k = 24 | missed height 7 , 3 times
+k = 24 | missed height 8 , 3 times
+k = 24 | missed height 9 , 3 times
+k = 24 | missed height 10 , 3 times
+k = 24 | missed height 11 , 3 times
+k = 24 | missed height 12 , 3 times
+k = 24 | missed height 13 , 3 times
+k = 24 | missed height 14 , 3 times
+k = 24 | missed height 15 , 3 times
+k = 24 | missed height 16 , 3 times
+k = 24 | missed height 17 , 3 times
+k = 24 | missed height 18 , 4 times
+k = 24 | missed height 19 , 5 times
+k = 24 | missed height 20 , 6 times
+k = 24 | missed height 21 , 6 times
+k = 24 | missed height 22 , 7 times
+k = 24 | missed height 23 , 8 times
+k = 24 | missed height 24 , 9 times
+k = 24 | missed height 25 , 9 times
+k = 24 | missed height 26 , 9 times
+k = 24 | missed height 27 , 9 times
+k=25
+down	|	up
+845264853	|	0 - i:1
+845264853	|	0 - i:2
+845264853	|	0 - i:3
+845264854	|	0 - i:4
+845264853	|	0 - i:5
+845264853	|	0 - i:6
+845264853	|	0 - i:7
+845264854	|	0 - i:8
+845264853	|	0 - i:9
+845264853	|	0 - i:10
+845264853	|	0 - i:11
+845264854	|	0 - i:12
+845264853	|	0 - i:13
+845264853	|	0 - i:14
+845264853	|	0 - i:15
+845264854	|	0 - i:16
+845264853	|	0 - i:17
+845264853	|	0 - i:18
+845264853	|	0 - i:19
+845264854	|	0 - i:20
+845264853	|	0 - i:21
+845264852	|	1 - i:22
+845264831	|	22 - i:23
+845264601	|	253 - i:24
+845262851	|	2002 - i:25
+845252686	|	12166 - i:26
+845204617	|	60214 - i:27
+----
+k = 25 | missed height 4 , 3 times
+k = 25 | missed height 5 , 3 times
+k = 25 | missed height 6 , 3 times
+k = 25 | missed height 7 , 3 times
+k = 25 | missed height 8 , 3 times
+k = 25 | missed height 9 , 3 times
+k = 25 | missed height 10 , 3 times
+k = 25 | missed height 11 , 3 times
+k = 25 | missed height 12 , 3 times
+k = 25 | missed height 13 , 3 times
+k = 25 | missed height 14 , 3 times
+k = 25 | missed height 15 , 3 times
+k = 25 | missed height 16 , 3 times
+k = 25 | missed height 17 , 3 times
+k = 25 | missed height 18 , 3 times
+k = 25 | missed height 19 , 4 times
+k = 25 | missed height 20 , 5 times
+k = 25 | missed height 21 , 6 times
+k = 25 | missed height 22 , 6 times
+k = 25 | missed height 23 , 7 times
+k = 25 | missed height 24 , 8 times
+k=26
+down	|	up
+535794546	|	0 - i:1
+535794546	|	0 - i:2
+535794546	|	0 - i:3
+535794545	|	0 - i:4
+
+535794546	|	0 - i:5
+535794546	|	0 - i:6
+535794546	|	0 - i:7
+535794545	|	0 - i:8
+
+535794546	|	0 - i:9
+535794546	|	0 - i:10
+535794546	|	0 - i:11
+535794545	|	0 - i:12
+
+535794546	|	0 - i:13
+535794546	|	0 - i:14
+535794546	|	0 - i:15
+535794545	|	0 - i:16
+
+535794546	|	0 - i:17
+535794546	|	0 - i:18
+535794546	|	0 - i:19
+535794545	|	0 - i:20
+
+535794546	|	0 - i:21
+535794546	|	0 - i:22
+
+535794545	|	1 - i:23
+535794522	|	23 - i:24
+----
+k = 26 | missed height 4 , 3 times
+k = 26 | missed height 5 , 3 times
+k = 26 | missed height 6 , 3 times
+k = 26 | missed height 7 , 3 times
+k = 26 | missed height 8 , 3 times
+k = 26 | missed height 9 , 3 times
+k = 26 | missed height 10 , 3 times
+k = 26 | missed height 11 , 3 times
+k = 26 | missed height 12 , 3 times
+k = 26 | missed height 13 , 3 times
+k = 26 | missed height 14 , 3 times
+k = 26 | missed height 15 , 3 times
+k = 26 | missed height 16 , 3 times
+k = 26 | missed height 17 , 3 times
+k = 26 | missed height 18 , 3 times
+k = 26 | missed height 19 , 3 times
+k = 26 | missed height 20 , 4 times
+k = 26 | missed height 21 , 5 times
+k=27
+down	|	up
+607383630	|	0 - i:1
+607383630	|	0 - i:2
+607383630	|	0 - i:3
+607383631	|	0 - i:4
+607383630	|	0 - i:5
+607383630	|	0 - i:6
+607383630	|	0 - i:7
+607383631	|	0 - i:8
+607383630	|	0 - i:9
+607383630	|	0 - i:10
+607383630	|	0 - i:11
+607383631	|	0 - i:12
+607383630	|	0 - i:13
+607383630	|	0 - i:14
+607383630	|	0 - i:15
+607383631	|	0 - i:16
+607383630	|	0 - i:17
+607383630	|	0 - i:18
+607383630	|	0 - i:19
+607383631	|	0 - i:20
+607383630	|	0 - i:21
+----
+k = 27 | missed height 4 , 3 times
+k = 27 | missed height 5 , 3 times
+k = 27 | missed height 6 , 3 times
+k = 27 | missed height 7 , 3 times
+k = 27 | missed height 8 , 3 times
+k = 27 | missed height 9 , 3 times
+k = 27 | missed height 10 , 3 times
+k = 27 | missed height 11 , 3 times
+k = 27 | missed height 12 , 3 times
+k = 27 | missed height 13 , 3 times
+k = 27 | missed height 14 , 3 times
+k = 27 | missed height 15 , 3 times
+k = 27 | missed height 16 , 3 times
+k = 27 | missed height 17 , 3 times
+k = 27 | missed height 18 , 3 times
+k=28
+down	|	up
+822150884	|	0 - i:1
+822150884	|	0 - i:2
+822150884	|	0 - i:3
+822150883	|	0 - i:4
+
+822150884	|	0 - i:5
+822150884	|	0 - i:6
+822150884	|	0 - i:7
+822150883	|	0 - i:8
+
+822150884	|	0 - i:9
+822150884	|	0 - i:10
+822150884	|	0 - i:11
+822150883	|	0 - i:12
+
+822150884	|	0 - i:13
+822150884	|	0 - i:14
+822150884	|	0 - i:15
+822150883	|	0 - i:16
+
+822150884	|	0 - i:17
+822150884	|	0 - i:18
+----
+k = 28 | missed height 4 , 3 times
+k = 28 | missed height 5 , 3 times
+k = 28 | missed height 6 , 3 times
+k = 28 | missed height 7 , 3 times
+k = 28 | missed height 8 , 3 times
+k = 28 | missed height 9 , 3 times
+k = 28 | missed height 10 , 3 times
+k = 28 | missed height 11 , 3 times
+k = 28 | missed height 12 , 3 times
+k = 28 | missed height 13 , 3 times
+k = 28 | missed height 14 , 3 times
+k = 28 | missed height 15 , 3 times
+k=29
+down	|	up
+466452637	|	0 - i:1
+466452637	|	0 - i:2
+466452637	|	0 - i:3
+466452638	|	0 - i:4
+
+466452637	|	0 - i:5
+466452637	|	0 - i:6
+466452637	|	0 - i:7
+466452638	|	0 - i:8
+
+466452637	|	0 - i:9
+466452637	|	0 - i:10
+466452637	|	0 - i:11
+466452638	|	0 - i:12
+
+466452637	|	0 - i:13
+466452637	|	0 - i:14
+466452637	|	0 - i:15
+----
+k = 29 | missed height 4 , 3 times
+k = 29 | missed height 5 , 3 times
+k = 29 | missed height 6 , 3 times
+k = 29 | missed height 7 , 3 times
+k = 29 | missed height 8 , 3 times
+k = 29 | missed height 9 , 3 times
+k = 29 | missed height 10 , 3 times
+k = 29 | missed height 11 , 3 times
+k = 29 | missed height 12 , 3 times
+k=30
+down	|	up
+399357905	|	0 - i:1
+399357905	|	0 - i:2
+399357905	|	0 - i:3
+399357904	|	0 - i:4
+
+399357905	|	0 - i:5
+399357905	|	0 - i:6
+399357905	|	0 - i:7
+399357904	|	0 - i:8
+
+399357905	|	0 - i:9
+399357905	|	0 - i:10
+399357905	|	0 - i:11
+399357904	|	0 - i:12
+----
+k = 30 | missed height 4 , 3 times
+k = 30 | missed height 5 , 3 times
+k = 30 | missed height 6 , 3 times
+k = 30 | missed height 7 , 3 times
+k = 30 | missed height 8 , 3 times
+k = 30 | missed height 9 , 3 times
+k=31
+down	|	up
+198073707	|	0 - i:1
+198073707	|	0 - i:2
+198073707	|	0 - i:3
+198073708	|	0 - i:4
+
+198073707	|	0 - i:5
+198073707	|	0 - i:6
+198073707	|	0 - i:7
+198073708	|	0 - i:8
+
+198073707	|	0 - i:9
+----
+k = 31 | missed height 4 , 3 times
+k = 31 | missed height 5 , 3 times
+k = 31 | missed height 6 , 3 times
+k=32
+down	|	up
+594221122	|	0 - i:1
+594221122	|	0 - i:2
+594221122	|	0 - i:3
+594221121	|	0 - i:4
+
+594221122	|	0 - i:5
+594221122	|	0 - i:6
+----
+521985090
