@@ -20,15 +20,11 @@ int mod_sub(int a, int b, int mod) {
 
 void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     int i;
-    int x=maior+1;
 
     int index=k-4;
-    int aux,aux1,flag=1,cum=0,last_max=max_h;
+    int aux,aux1,cum=0,last_max=max_h;
 
 
-    if(x>max_h){
-        x=max_h;
-    }
     if((max_h=(h-1)*(n-k+1))>limit){ //para o calc na function rec
         max_h=limit;
     }
@@ -41,9 +37,6 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
 
     if((aux=index+h-1)>max_h-1){
         aux=max_h-1;
-        flag=0;
-    }else if(lim_up+h-2>max_h){//limite final da new_dp
-        flag=0;
     }
 
     //printf("DP\n");
@@ -56,7 +49,7 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     for(i=index;i<aux;i++){ //index é a partir de onde começa a contar na dp
         cum=mod_add(cum,dp[i*2+1],MOD);
         new_dp[(i+1)*2+1]=cum; 
-        if(flag){
+        if(lim_up+(h-2)-(i-index)<=max_h){
             new_dp[(lim_up+(h-2)-(i-index))*2+1]=cum;
         }
 
@@ -70,7 +63,7 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     if((aux=lim_up-1)>max_h-1){ //lim é o final da dp
         aux=max_h-1;
     }
-
+    
     for(i=i;i<aux;i++){
         cum=mod_add(cum,mod_add(dp[i*2+1],-dp[(i-(h-1))*2+1],MOD),MOD);
         new_dp[(i+1)*2+1]=cum; 
@@ -82,6 +75,7 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
 
     
     //primeiro olhar para os downs na dp e só dps olhar para os ups
+    
     cum=0;
     
     if((aux1=lim_down-h+1)<0){
@@ -112,6 +106,7 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     }printf("\n");*/
 
     //ups to downs
+    
     cum=0;
     if((aux1=last_max-h)<0){
         aux1=0;
@@ -169,7 +164,12 @@ void func(){
     int k,i;
     int dp[limit*2]; //[false,true]
     int new_dp[limit*2];
-    int *pt_aux,*pt_dp=dp,*pt_new_dp=new_dp;
+    int *pt_aux,*pt_dp,*pt_new_dp;
+    /*
+    dp=(int*)malloc(limit*2*sizeof(int));
+    new_dp=(int*)malloc(limit*2*sizeof(int));*/
+    pt_dp=dp;
+    pt_new_dp=new_dp;
     memset(dp, 0, limit*2*sizeof(int));
     memset(new_dp, 0, limit*2*sizeof(int)); 
 
@@ -198,6 +198,10 @@ void func(){
     }
 
     /*
+    free(dp);
+    free(new_dp);*/
+
+    /*
     printf("----\n"); 
         for(i=0;i<limit;i++){
         if(miss[i]!=0){
@@ -213,7 +217,11 @@ int main(void){
         scanf("%d %d %d",&n,&h,&H);
         counter=0;
         //calculate max possible height for given n blocks of height h
-        max_h=limit=H-h;
+        //max_h=limit=H-h;
+        if((max_h=limit=(h-1)*(n/2+n%2)+1-h)>H-h){
+            max_h=limit=H-h;
+        }
+
         func();
         printf("%d\n",counter);
     }
