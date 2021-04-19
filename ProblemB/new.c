@@ -18,20 +18,6 @@ int mod_sub(int a, int b, int mod) {
     return mod_add(a, -b, mod);
 }
 
-void print_dp(int *dp, int s){
-    int i,j;
-    for(i=0;i<s;i++){
-        printf("%d -> ",i+1);
-        for(j=0;j<2;j++){
-            if(j==0){
-                printf("False:");
-            }else{printf("True:");}
-            printf("%d ",dp[i*2+j]);
-        }
-        printf("\n");
-    }
-}
-
 void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     int i;
     int x=maior+1;
@@ -51,7 +37,7 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     if(last_max>lim_up){
         last_max=lim_up;
     }
-    printf("\nk:%d\n",k);
+    //printf("\nk:%d\n",k);
 
     if((aux=index+h-1)>max_h-1){
         aux=max_h-1;
@@ -61,11 +47,11 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     }
 
     //printf("DP\n");
-    
+    /*
     printf("down\t|\tup\n");
     for(i=0;i<lim_up;i++){
         printf("%d\t|\t%d\n",dp[i*2],dp[i*2+1]);
-    }printf("\n");
+    }printf("\n");*/
 
     for(i=index;i<aux;i++){ //index é a partir de onde começa a contar na dp
         cum=mod_add(cum,dp[i*2+1],MOD);
@@ -76,7 +62,7 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
 
         ////
         if(i+2<h){
-            printf("0-->+%d counter=%d\n",cum,counter);
+            //printf("0-->+%d counter=%d\n",cum,counter);
             counter=mod_add(counter,cum,MOD);
         }
         //printf("i:%d | i:%d\n",i+1,(lim+(h-2)-(i-index)));
@@ -86,10 +72,10 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     }
 
     for(i=i;i<aux;i++){
-        cum=mod_add(cum,dp[i*2+1]-dp[(i-(h-1))*2+1]);
+        cum=mod_add(cum,mod_add(dp[i*2+1],-dp[(i-(h-1))*2+1],MOD),MOD);
         new_dp[(i+1)*2+1]=cum; 
         if(i+2<h){
-            printf("1-->+%d counter=%d\n",cum,counter);
+            //printf("1-->+%d counter=%d\n",cum,counter);
             counter=mod_add(counter,cum,MOD);
         }
     }
@@ -103,18 +89,18 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     }
 
     for(i=lim_down;i>aux1;i--){
-        cum+=dp[i*2];
+        cum=mod_add(cum,dp[i*2],MOD);
         new_dp[(i-1)*2]=cum; 
         if(i<h){
-            printf("2-->+%d counter=%d\n",cum,counter);
+            //printf("2-->+%d counter=%d\n",cum,counter);
             counter=mod_add(counter,cum,MOD);
         }
     }
     for(i=i;i>0;i--){
-        cum+=dp[i*2]-dp[(i+(h-1))*2];
+        cum=mod_add(cum,mod_add(dp[i*2],-dp[(i+(h-1))*2],MOD),MOD);
         new_dp[(i-1)*2]=cum;
         if(i<h){
-            printf("3-->+%d counter=%d\n",cum,counter);
+            //printf("3-->+%d counter=%d\n",cum,counter);
             counter=mod_add(counter,cum,MOD);
         }
     }
@@ -132,19 +118,19 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     }
     
     for(i=last_max-1;i>aux1;i--){
-        cum+=dp[i*2+1];
-        new_dp[(i-1)*2]+=cum; 
+        cum=mod_add(cum,dp[i*2+1],MOD);
+        new_dp[(i-1)*2]=mod_add(new_dp[(i-1)*2],cum,MOD); 
         ///
         if(i<h){
-            printf("4-->+%d counter=%d\n",cum,counter);
+           // printf("4-->+%d counter=%d\n",cum,counter);
             counter=mod_add(counter,cum,MOD);
         }
     }
     for(i=i;i>0;i--){
-        cum=mod_add(cum,dp[i*2+1]-dp[(i+(h-1))*2+1],MOD);
-        new_dp[(i-1)*2]+=cum;
+        cum=mod_add(cum,mod_add(dp[i*2+1],-dp[(i+(h-1))*2+1],MOD),MOD);
+        new_dp[(i-1)*2]=mod_add(new_dp[(i-1)*2],cum,MOD);
         if(i<h){
-            printf("5-->+%d counter=%d\n",cum,counter);
+           // printf("5-->+%d counter=%d\n",cum,counter);
             counter=mod_add(counter,cum,MOD);
         }
     }

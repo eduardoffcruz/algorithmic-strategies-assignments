@@ -72,12 +72,12 @@ void arcs_for_k_blocks(int k, int *dp, int *new_dp){
     if((max_h=(h-1)*(n-curr_elem_count-1))>limit){
         max_h=limit;
     }
-    
+    /*
     printf("k=%d\n",k);
     printf("down\t|\tup\n");
     for(i=0;i<x;i++){
         printf("%d\t|\t%d - i:%d\n",dp[2*i+0],dp[2*i+1],i+1);
-    }
+    }*/
     for(i=0;i<x;i++){
         if((repeat_down=dp[2*i+0])>0){
             dp[2*i+0]=0; //clean
