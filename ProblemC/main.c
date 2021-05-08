@@ -117,8 +117,8 @@ int find(int v){
     return set[v-1];
 }
 
-void _union(int v1, int v2){
-    link(find(v1,set),find(v2,set));
+void _union(int a, int b){
+    link(find(a),find(b));
 }
 
 int compareDist(const void *a1, const void *a2) {
@@ -160,7 +160,7 @@ int calculate_min_lengths_of_scc(int index){
         if(find(arestas[i].v1)!=find(arestas[i].v2)){
             //printf("bateu1\n");
             len+=arestas[i].dist;
-            _union(arestas[i].v1,arestas[i].v2,rank);
+            _union(arestas[i].v1,arestas[i].v2);
         }
     }
 
