@@ -1,2 +1,2 @@
-# Project1_EA2021
-Project1 - Algorithmic Strategies course @2021
+# Assignments_EA_2021
+All three assignments - Algorithmic Strategies course @2021
