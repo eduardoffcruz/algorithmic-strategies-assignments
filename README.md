@@ -23,11 +23,11 @@ large, you need to report your answer in modulo 1000000007.
 
 - Valid arcs.
  
-<img width=35% height=35% src="screenshots/screenshotB_1.png"/>
+<img width=50% height=50% src="screenshots/screenshotB_1.png"/>
 
 - Not valid arcs.
 
-<img width=35% height=35% src="screenshots/screenshotB_2.png"/>
+<img width=50% height=50% src="screenshots/screenshotB_2.png"/>
 
 ##    Bike Lanes
 ###    Goals :dart:
@@ -37,7 +37,7 @@ large, you need to report your answer in modulo 1000000007.
 3. What is the longest lane to build (considering a different lane for each circuit)?
 4. What is the total length of bike lane to build (considering all circuits)?
 
-<img width=35% height=35% src="screenshots/screenshotC.png"/>
+<img width=50% height=50% src="screenshots/screenshotC.png"/>
 
 
 ___
